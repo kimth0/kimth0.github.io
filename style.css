@@ -62,7 +62,7 @@ h1{
 }
 
 h2{
-    font-size: medium;
+    font-size: var(--font-medium);
     font-weight: var(--weight-semi-bold);
     color: black;
     margin: 8px 0px;
@@ -271,7 +271,7 @@ p{
 
 .list__btn.active,
 .list__btn:hover{
-    background-color: blue;
+    background-color: black;
     color: white;
 }
 
@@ -282,7 +282,7 @@ p{
 }
 
 .list__count{
-    background-color: red;
+    background-color: gray;
     border-radius: 50%;
     color: white;
     width: 24px;
@@ -310,7 +310,7 @@ p{
     width: 280px;
     height: 250px;
     margin: 2px;
-    background-color: #ccc;
+    background-color: #eee;
 }
 
 .project__img{
@@ -352,4 +352,32 @@ p{
     margin-left: -12px;
     margin-top: 8px;
     background-color: white;
+}
+
+/* Contact */
+#contact{
+    background-color: #0f4c81;
+}
+
+.contact__title,
+.contact__email,
+.contact__links,
+.contact__rights{
+    color: white;
+}
+
+.contact__title{
+    margin: 32px 0px;
+}
+
+.contact__links{
+    font-size: var(--font-large);
+    margin: 24px 0px;
+}
+.contact__links i{
+    transition: all var(--animation-duration);
+}
+.contact__links i:hover{
+    transform: scale(1.1);
+    color: gold;
 }
