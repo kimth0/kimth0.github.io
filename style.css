@@ -84,14 +84,21 @@ p{
 
 /* Navbar */
 #navbar{
+    position: fixed;
+    width: 100%;
     display: flex;
     justify-content: space-between;
-    background-color: #0f4c81;
+    background-color: transparent;
     align-items: center;
     color: white;
     padding: 16px;
+    transition: all var(--animation-duration) ease-in-out;
 }
 
+#navbar.navbar--dark{
+    background-color: #0f4c81;
+    padding: 8px;
+}
 .navbar__logo{
     font-size: var(--font-medium);
     font-weight: var(--weight-semi-bold);
@@ -133,6 +140,7 @@ p{
     background-repeat: no-repeat;
     background-size: cover;
     padding: 40px;
+    padding-top: 120px;
     text-align: center;
 }
 
