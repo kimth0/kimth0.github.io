@@ -1,0 +1,751 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Yellow Finger</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="./lib/setup.css">
+        <link rel="stylesheet" href="./lib/swiper.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+        <script src="./lib/jquery.js"></script>
+        <script src="./lib/swiper.js"></script>
+        <style>
+            
+            body{
+                background-color: #eee;
+                font-family: 'Open Sans', sans-serif;
+            }
+        
+            header{
+                display: inline-block;
+                width: 100%;
+                padding: 50px;
+                transition: padding 0.5s;
+            }
+            header #logo{
+                float: left;
+            }
+            header #logo h1{
+                width: 180px;
+                height: 40px;
+                display: inline-block;
+                font-size: 0px;
+                background-image: url(./img/header_logo.svg);
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: 100% 100%;
+            }
+            
+            header #menu{
+                float: right;
+            }
+            header #menu .inquiry{
+                line-height: 40px;
+                padding: 0px 10px;
+                background-color: #ddd;
+                font-weight: bold;
+                margin: 0px 5px;
+            }
+            header #menu .button{
+                padding: 14px 12px;
+                height: 40px;
+                width: 40px;
+                line-height: 5px;
+                background-color: black;
+                display: inline-block;
+            }
+            header #menu .button span{
+                width: 16px;
+                height: 2px;
+                background-color: white;
+                display: inline-block;
+            }
+            header #menu .menubox{
+                position: fixed;
+                background-color: #222;
+                width: 230px;
+                height: 100%;
+                top: 0px;
+                right: 0px;
+                z-index: 9999;
+                padding: 50px 0px;
+                opacity: 0;
+                transform: translateX(100%);
+                transition: opacity 1s, transform 0s 1s;
+            }
+            
+            header #menu .menubox.view{
+                opacity: 1;
+                transform: translateX(0%);
+                transition: opacity 1s;
+                
+            }
+            
+            header #menu .menubox .inquiry{
+                background-color: #666;
+                color: white;
+            }
+            header #menu .menubox .button{
+                background-color: #444;
+            }
+            header #menu .menubox .button span{
+                width: 26px;
+                height: 2px;
+            }
+            header #menu .menubox .button span:nth-child(1){
+                transform: translate(-4px,6px)rotate(45deg);
+            }
+            header #menu .menubox .button span:nth-child(2){
+                transform: translate(-4px,1px) rotate(-45deg);
+            }
+            
+            header #menu .menubox ul{
+                margin-top: 50px;
+            }
+            header #menu .menubox ul li{
+                width: 100%;
+                text-align: left;
+            }
+            header #menu .menubox ul li a{
+                font-size: 20px;
+                color: white;
+                margin: 9px 40px;
+                 border-bottom: 2px solid transparent;
+            }
+            header #menu .menubox ul li a:hover{
+                border-bottom: 2px solid yellow;
+            }
+            
+            header #menu .menubox .sns{
+                padding: 0px 40px;
+                text-align: left;
+            }
+            header #menu .menubox .sns div{
+                color: white;
+                font-size: 11px;
+            }
+            
+            header #menu .menuBackground{
+                position: fixed;
+                width: 0%;
+                height: 0%;
+                top: 0px;
+                left: 0px;
+                z-index: 9998;
+                background-color: #0005;
+                opacity: 0;
+                transition: opacity 1s, width 0s 1s, height 0s 1s;
+            }
+            header #menu .menuBackground.view{
+                width: 100%;
+                height: 100%;
+                opacity: 1;
+                transition: opacity 1s;
+            }
+            header #menu .menubox .sns .blog{
+                background-image: url(./img/footer_blog.svg);
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: 100% 100%;
+                width: 20px;
+                height: 20px;
+                margin: 60px 0px 20px; 
+            }
+            
+            main{}
+            main .main{}
+            main .main .swiper-container{
+                padding: 100px 0px 40px;
+            }
+            
+            main .main .swiper-slide{
+                background-color: #eee;
+            }
+            
+            main .main .swiper-slide .title,
+            main .main .swiper-slide .title span{
+                font-size: 34px;
+                font-weight: bold;
+            }
+            main .main .swiper-slide .sub{
+                margin: 30px 0px;
+            }
+            
+            main .main .swiper-slide .sub,
+            main .main .swiper-slide .sub span{
+                color: #555;
+                font-size: 12px;
+                letter-spacing: -1px;
+            }
+            
+            main .main .swiper-pagination-bullet.swiper-pagination-bullet-active{
+                border: 1px solid black;
+                border-radius: 100%;
+                background-color: black;
+                opacity: 1;
+            }
+            main .main .swiper-pagination-bullet{
+                background-color: transparent;
+                border: 1px solid black;
+                opacity: 1;
+            }
+            
+            main .homelist{
+                padding: 40px;
+            }
+            main .homelist li{
+                margin: 15px;
+            }
+            main .homelist li a{}
+            main .homelist li a .img{
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+                transition: background 0.2s;
+            }
+            main .homelist li:hover a .img{
+                background-size: 120% 120%;
+            }
+            main .homelist li a .img img{
+                width: 100%;
+                opacity: 0;
+            }
+            main .homelist li a .title{
+                float: left;
+            }
+            main .homelist li a .title .bar{
+                display: inline-block;
+                border-bottom: 2px solid black;
+                width: 40px;
+                margin: 12px 10px 0px 0px;
+            }
+            main .homelist li a .title .context{
+                display: inline-block;
+            }
+            main .homelist li a .title .context .name{
+                font-weight: bold;
+                font-size: 15px;
+            }
+            main .homelist li a .title .context .sub{
+                font-size: 12px;
+                color: #555;
+                margin-top: 5px;
+            }
+            
+            main .homelist li a .img.t1{
+                background-image: url(./img/1.jpg);
+            }
+            main .homelist li a .img.t2{
+                background-image: url(./img/2.jpg);
+            }
+            main .homelist li a .img.t3{
+                background-image: url(./img/3.jpg);
+            }
+            main .homelist li a .img.t4{
+                background-image: url(./img/4.jpg);
+            }
+            main .homelist li a .img.t5{
+                background-image: url(./img/5.jpg);
+            }
+            main .homelist li a .img.t6{
+                background-image: url(./img/6.jpg);
+            }
+            main .homelist li a .img.t7{
+                background-image: url(./img/7.jpg);
+            }
+            main .homelist li a .img.t8{
+                background-image: url(./img/8.jpg);
+            }
+            main .homelist li a .img.t9{
+                background-image: url(./img/9.jpg);
+            }
+            
+            main .loadMore{}
+            main .loadMore .button{
+                width: 50px;
+                height: 50px;
+                display: inline-block;
+                background-color: black;
+                border-radius: 100%;
+                position: relative;
+            }
+            main .loadMore .button span{
+                width: 20px;
+                height: 1px;
+                background-color: white;
+                display: inline-block;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+            }
+            main .loadMore .button span:nth-child(2){
+                transform: translate(-50%,-50%) rotate(90deg);
+            }
+            main .loadMore .context{
+                font-size: 16px;
+                font-weight: bold;
+                margin-top: 10px;
+            }
+            main .loadMore .count{
+                font-size: 16px;
+                font-weight: bold;
+                color: #666;
+            }
+            
+            main .lastTitle{
+                font-size: 35px;
+                font-weight: bold;
+                padding: 100px 0px;
+                
+            }
+            
+            main .contactButton{
+                background-color: #ffeb10;
+                line-height: 50px;
+                width: 160px;
+                font-weight: bold;
+                display: inline-block;
+            }
+            main .contactButton span{
+                font-weight: bold;
+                display: inline-block;
+                line-height: 46px;
+                font-size: 18px;
+                position: absolute;
+                opacity: 0;
+                transition: opacity 1s;
+            }
+            main .contactButton:hover span{
+                opacity: 1;
+                
+            }
+            
+            @media only screen and (min-width:100px)
+            and (max-width:1000px){
+                
+                main .homelist{
+                padding: 20px;
+                }
+                
+                main .main .swiper-slide .title,
+                main .main .swiper-slide .title span{
+                    font-size: 28px;
+                }
+                main .main .swiper-slide .sub,
+                main .main .swiper-slide .sub span{
+                    font-size: 13px;
+                }
+            }
+
+            @media only screen and (min-width:100px)
+            and (max-width:800px){
+                
+                header{
+                    padding: 50px 30px;
+                }
+                
+                main .homelist{
+                padding: 10px;
+                }
+                
+                main .main .swiper-container{
+                    padding: 50px 0px;
+                }
+
+                main .main .swiper-slide .title,
+                main .main .swiper-slide .title span{
+                    font-size: 28px;
+                    padding: 20px;
+                }
+                main .main .swiper-slide .sub,
+                main .main .swiper-slide .sub span{
+                    font-size: 13px;
+                }
+                main .lastTitle{
+                    font-size: 20px;
+                    padding: 60px 0px;
+                }
+                
+                footer .footer{
+                    float: none;
+                    text-align: center;
+                }
+                footer .footer .flogo{
+                    position: relative;
+                    opacity: 1;
+                    margin-bottom: 20px;
+                }
+                footer .blog{ 
+                    float: none;
+                    text-align: center;
+                }
+                
+            }
+
+            @media only screen and (min-width:100px)
+            and (max-width:600px){
+                
+                header{
+                    padding: 30px 20px;
+                }
+                
+                header #menu .inquiry{
+                    opacity: 0;
+                    transition: opacity 1s;
+             
+                }
+                header #menu .button{
+                    background-color: #ddd;
+                    transition: background 1s;
+                }
+                header #menu .button span{
+                    background-color: black;
+                    display: inline-block;
+                }
+                
+                main .main .swiper-container{
+                    padding: 40px 0px;
+                }
+                
+                main .main .swiper-slide .title,
+                main .main .swiper-slide .title span{
+                    font-size: 20px;
+                    padding: 10px;
+                }
+                
+            }
+
+            
+            
+            footer{
+                background-color: #222;
+                display: inline-block;
+                width: 100%;
+                margin-top: 100px;
+                padding: 40px;
+            }
+            footer .footer{
+                float: left;
+                color: white;
+                text-align: left;
+                font-size: 16px;
+                line-height: 2;
+                
+            }
+            footer .footer .flogo{
+                background-image: url(./img/footer_logo.svg);
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+                background-position: center;
+                width: 80px;
+                height: 80px;
+                font-size: 0px;
+                position: absolute;
+                opacity: 0;
+                transition: opacity 1s;
+                
+            }
+            footer .blog{
+                text-align: right;
+                float: right;
+            }
+            footer .blog .icon{
+                background-image: url(./img/footer_blog.svg);
+                background-size: 100% 100%;
+                background-repeat: no-repeat;
+                background-position: center;
+                width: 20px;
+                height: 20px;
+                font-size: 0px;
+                margin-top: 50px;
+            }
+            footer .blog .copyright{
+                font-size: 12px;
+                color: #666;
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <a id="logo" href="">
+                <h1>Yellow Finger</h1>
+            </a>
+            
+            <nav id="menu">
+                <a class="inquiry" href="#">프로젝트문의</a>
+                
+                <div class="button">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            
+                <div class="menubox">
+                    <a class="inquiry" href="#">프로젝트문의</a>
+
+                    <div class="button">
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <ul>
+                        <li><a href="#">wrok</a></li>
+                        <li><a href="#">about</a></li>
+                        <li><a href="#">blog</a></li>
+                        <li><a href="#">contact</a></li>
+                    </ul>
+                    
+                    <div class="sns">
+                        <a class="blog" href="#"></a>
+                        <div>contact@yellow-finger.com</div>
+                        <div>02.2205.4128</div>
+                    </div>
+                    
+                </div>
+                <div class="menuBackground"></div>
+            </nav>
+        </header>
+        <main>
+            <div class="main">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                       
+                        <div class="swiper-slide">
+                            <div class="title">
+                                THE MOST IMPORTANT STEP IS<br>
+                                UNDERSTANDING AND EMPATHIZING
+                                <span>WITH THE PROJECT.</span>
+                            </div>
+                             
+                            <div class="sub">
+                               <span>옐로우핑거 생각하는 가장 중요한 단계는</span>  
+                               <span>프로젝트를 이해하고 공감하는 것입니다.</span>  
+                            </div> 
+                        </div>
+                        
+                        
+                      <div class="swiper-slide">
+                          <div class="title">
+                              <span>YELLOW FINGER IS A NEW DIGITAL AGENCY STUDIO</span><br>
+                              <span>THAT COMBINES STRATEGY, CREATIVITY AND TECHNOLOGY.</span>
+                          </div>
+                          <div class="sub">
+                              <span>옐로우핑거는 전략, 창의력 및 기술이 융합 되는</span>
+                              <span>뉴 디지털 에이전시 스튜디오 입니다.</span>
+                          </div>
+                        </div>
+                          
+                          
+                      
+                        <div class="swiper-slide">
+                            <div class="title">
+                                <span>WE BUILD<br>USEFUL DESIGN AND UX EXPERIENCES.</span>
+                            </div>
+                              
+                        <div class="sub">
+                           우리는 유용한 디자인과 UX 경험을 구축합니다. 
+                        </div>  
+                      </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        
+    </div>    
+       
+            <ul class="homelist grid3">
+                <li>
+                    <a href="#">
+                        <div class="img t1">
+                            <img src="./img/box.jpg" alt="">
+                        </div>
+                        <div class="title">
+                            <div class="bar"></div>
+                            <div class="context">
+                                <div class="name">Product Name</div>
+                                <div class="sub">Subtext Contents.</div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <div class="img t2">
+                            <img src="./img/box.jpg" alt="">
+                        </div>
+                        <div class="title">
+                            <div class="bar"></div>
+                            <div class="context">
+                                <div class="name">Product Name</div>
+                                <div class="sub">Subtext Contents.</div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <div class="img t3">
+                            <img src="./img/box.jpg" alt="">
+                        </div>
+                        <div class="title">
+                            <div class="bar"></div>
+                            <div class="context">
+                                <div class="name">Product Name</div>
+                                <div class="sub">Subtext Contents.</div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <div class="img t4">
+                            <img src="./img/box.jpg" alt="">
+                        </div>
+                        <div class="title">
+                            <div class="bar"></div>
+                            <div class="context">
+                                <div class="name">Product Name</div>
+                                <div class="sub">Subtext Contents.</div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <div class="img t5">
+                            <img src="./img/box.jpg" alt="">
+                        </div>
+                        <div class="title">
+                            <div class="bar"></div>
+                            <div class="context">
+                                <div class="name">Product Name</div>
+                                <div class="sub">Subtext Contents.</div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <div class="img t6">
+                            <img src="./img/box.jpg" alt="">
+                        </div>
+                        <div class="title">
+                            <div class="bar"></div>
+                            <div class="context">
+                                <div class="name">Product Name</div>
+                                <div class="sub">Subtext Contents.</div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <div class="img t7">
+                            <img src="./img/box.jpg" alt="">
+                        </div>
+                        <div class="title">
+                            <div class="bar"></div>
+                            <div class="context">
+                                <div class="name">Product Name</div>
+                                <div class="sub">Subtext Contents.</div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <div class="img t8">
+                            <img src="./img/box.jpg" alt="">
+                        </div>
+                        <div class="title">
+                            <div class="bar"></div>
+                            <div class="context">
+                                <div class="name">Product Name</div>
+                                <div class="sub">Subtext Contents.</div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <div class="img t9">
+                            <img src="./img/box.jpg" alt="">
+                        </div>
+                        <div class="title">
+                            <div class="bar"></div>
+                            <div class="context">
+                                <div class="name">Product Name</div>
+                                <div class="sub">Subtext Contents.</div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+  
+            </ul>   
+            
+            <div class="loadMore">
+                <div class="button">
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="context">LODE MORE</div>
+                <div class="count">(9/19)</div>
+            </div>
+            
+            <div class="lastTitle">
+                WE'D LOVE TO BUILD<br>
+                SOMETHING GREAT TOGETHER.
+            </div>
+            
+            <a href="#" class="contactButton">
+                CONTACT US <span>→</span>
+            </a>
+        </main>
+        <footer>
+            <div class="footer">
+               <a  class="flogo" href="#">Yellow Finger</a><br>
+                대표자 : 김건호<br>
+                사업자등록번호 : 732-14-00195<br>
+                주소 : 서울특별시 성동구 성수일로8길 59 B동 7층<br>
+                전화번호 : 02 2205 4128<br>
+            </div>
+            <div class="blog">
+                <a class="icon" href="#"></a>
+                <div class="copyright">
+                    © 2016 Yellow-Finger All Rights Reserved.
+                </div>
+            </div>
+        </footer>
+    </body>
+      <script>
+            let swiper = new Swiper('.swiper-container', {
+            effect:'fade',
+            pagination: {
+            el: '.swiper-pagination',
+            },
+        });
+
+        $(function(){
+            
+            $("#menu .button").on("click",function(){
+                $("#menu .menubox").addClass("view");
+                $("#menu .menuBackground").addClass("view");
+            });
+            
+            $("#menu .menubox .button").on("click",function(){
+                $("#menu .menubox").removeClass("view");
+                $("#menu .menuBackground").removeClass("view");
+            });
+            
+            
+        });
+          
+  </script>
+</html>

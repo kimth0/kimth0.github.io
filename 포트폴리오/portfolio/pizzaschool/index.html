@@ -1,0 +1,777 @@
+<!doctype html>
+<html>
+    <head>
+        <title>PizzaSchool</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="./lib/setup.css">
+        <link rel="stylesheet" href="./lib/swiper.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+        <script src="./lib/jquery.js"></script>
+        <script src="./lib/swiper.js"></script>
+        
+    </head>
+    <style>
+        *{
+            font-family: 'Roboto', sans-serif;
+            
+        }
+        header{}
+        header .bar{
+            background-color: #fdc50c;
+            display: inline-block;
+            width: 100%;
+        }
+        header .bar ul{
+            float: right;
+           
+        }
+        header .bar ul li{
+            padding: 4px 0px;
+            margin: 0px 14px;
+            font-size: 12px;
+            color: white;
+            cursor: pointer;
+        }
+        
+        header .bar2{
+            background-color: white;
+            padding: 10px;
+        }
+        header .bar2 #logo{
+            float: left;
+            background-image: url(./img/logo.png);
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: center;
+            width: 150px;
+            height: 30px;
+            display: inline-block;
+        }
+        
+        header #menu{
+            float: right;
+        }
+        header #menu .pc{}
+        header #menu .pc ul{
+        }
+        header #menu .pc > ul > li{
+            display: inline-block;
+            line-height: 40px;
+            margin: 0px 20px;
+            position: relative;
+            font-size: 17px;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+        }
+        header #menu .pc > ul > li:hover{
+            border-bottom: 2px solid #fdc50c;
+        }
+        
+        header #menu .pc > ul > li ul{
+            position: absolute;
+            width: 200px;
+            left: -10px;
+            top: 100%;
+            height: 0px;
+            overflow: hidden;
+            transition: height 1s 0s;
+            margin-top: 10px;
+            z-index: 999;
+        }
+        header #menu .pc > ul > li:hover ul{
+            height: 300px;
+        }
+        header #menu .pc ul li ul li{
+            background-color: white;
+            display: inline-block;
+            width: 180px;
+            
+        }
+        header #menu .pc ul li ul li:hover{
+            background-color: #f7f1e8;
+        }
+        header #menu .pc > ul li ul li a{
+            margin-top: 10px;
+            padding: 5px 15px;
+            white-space: nowrap;
+            color: gray;
+            font-weight: bold;
+            float: left;
+        }
+        
+        
+        header #menu .mobile{}
+        header #menu .mobile .button{
+            width: 40px;
+            height: 40px;
+            padding: 15px;
+            line-height: 6px;
+            float: right;
+        }
+        header #menu .mobile .button span{
+            display: inline-block;
+            width: 20px;
+            height: 3px;
+            background-color: black;
+            cursor: pointer;
+            transition: background 1s;
+        }
+        header.view #menu .mobile .button span{
+            background-color: white;
+        }
+        header #menu .mobile .menubox{
+            position: fixed;
+            background-color: white;
+            width: 100%;
+            height: 100%;
+            top: 0px;
+            right: 0px;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: 1s;
+            z-index: 99999;
+
+
+        }
+        header #menu .mobile .menubox.view{
+            opacity: 1;
+            transform: translateX(0%);
+
+        }
+        header #menu .mobile .menubox .close{
+            float: right;
+            padding: 20px;
+            cursor: pointer;
+        }
+        header #menu .mobile .menubox .close img{}
+        header #menu .mobile .menubox ul{
+            margin-top: 100px;
+            text-align: left;
+            padding: 0px 30px;
+ 
+        }
+        header #menu .mobile .menubox ul li{
+           
+        }
+        header #menu .mobile .menubox ul li a{
+            font-size: 30px;
+            font-weight: bold; 
+            transition:  1s;
+            margin: 20px 0px;
+            border-bottom: 2px solid white;
+        }
+        header #menu .mobile .menubox ul li a:hover{
+            border-bottom: 2px solid #fdc50c;
+
+
+        }
+        
+        main{}
+        main .mslider{
+            height: 90.6vh;
+            width: 100%;
+        }
+        main .mslider .swiper-slide{
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        main .mslider .swiper-slide.t1{
+            background-image: url(./img/main1.jpg);
+            
+        }
+        main .mslider .swiper-slide.t2{
+            background-image: url(./img/main2.jpg);
+        }
+        main .mslider .swiper-slide.t3{
+            background-image: url(./img/main3.jpg);
+        }
+        main .mslider .swiper-slide img{
+            margin-top: 230px;
+        }
+        main .mslider .swiper-slide .title{
+            font-size: 30px;
+            font-weight: bold;
+            color: white;
+            margin-top: 50px;
+            
+        }
+        main .mslider .swiper-slide .button{
+            background-color: #fdc50c;
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            padding: 13px 16px;
+            color: white;
+            margin-top: 50px;
+            border-radius: 3px;
+            transition: background 1s;
+                
+        }
+        main .mslider .swiper-slide .button:hover{
+            background-color: #fdc50ce0;
+        }
+        .swiper-button-prev, .swiper-container-rtl .swiper-button-next{
+            left: 50px;
+            right: auto;
+            color: white;
+            border: 2px solid white;
+            padding: 30px;
+
+            
+        }
+        .swiper-button-next, .swiper-container-rtl .swiper-button-prev {
+            right: 50px;
+            left: auto;
+            color: white;
+            border: 2px solid white;
+            padding: 30px;
+
+        }
+  
+        main .list.grid2{
+            border-bottom: 1px solid #ccc;
+        }
+        main .list.grid2 li{
+        }
+        main .list.grid2 li .title{
+            font-size: 35px;
+            font-weight: bold;
+            margin-top: 200px;
+        }
+        main .list.grid2 li .sub{
+            font-size: 16px;
+            font-weight: bold;
+            color: gray;
+            margin-top: 15px;
+        }
+        main .list.grid2 li .button{
+            background-color: #fdc50c;
+            font-size: 20px;
+            font-weight: 600;
+            padding: 15px 30px 13px;
+            margin: 30px;
+            color: white;
+            border-radius: 3px;
+            transition: background 1s;
+        }
+        main .list.grid2 li img{
+            padding: 70px 0px;
+        }
+        
+        main .list{}
+        main .list > .title{
+            font-size: 35px;
+            font-weight: bold;
+            margin-top: 40px;
+        }
+        main .list > .sub{
+            font-size: 16px;
+            font-weight: bold;
+            padding: 10px 0px 70px;
+            
+        }
+        main .swiper-container.mlsit{}
+        main .swiper-container.mlist .swiper-slide{}
+        main .swiper-container.mlist .swiper-slide img{
+            width: 90%;
+            height: 90%;
+        }
+        main .swiper-container.mlist .swiper-slide .name{
+            color: #9c6144;
+            font-size: 19px;
+            font-weight: bold;
+            text-align: left;
+            margin-left: 13px;
+            line-height: 2;
+        }
+        main .swiper-container.mlist .swiper-slide .sub{
+            font-size: 12px;
+            text-align: left;
+            margin-left: 13px;
+            line-height: 2;
+        }
+        main .swiper-container.mlist .swiper-slide .pay{
+            color: #cc0000;
+            text-align: left;
+            margin-left: 13px;
+        }
+        main .mbutton .button{
+            background-color: #fdc50c;
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            padding: 13px 16px;
+            color: white;
+            margin-top: 20px;
+            border-radius: 3px;
+
+        }
+        
+
+        main .mainbanner{
+            background-image: url(./img/mainbanner.jpg);
+            background-size: cover;
+            background-position: center;
+            display: inline-block;
+            width: 100%;
+            height: 400px;
+            margin-top: 40px;
+            position: relative;
+            z-index: ;
+        }
+        main .mainbanner:before{
+            content: " ";
+            font-size: 0px;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #251c1c52;
+            top: 0px;
+            left: 0px;
+            z-index: 1;
+        }
+        
+        main .mainbanner img{
+            background-size: cover;
+            background-position: center;
+            display: inline-block;
+            width: 80%;
+            height: 100px;
+            margin-top: 150px;
+            z-index: 9;
+
+        }
+
+        
+        main .av-layout{
+        }
+        main .av-layout ul{
+            border-right: 1px solid #ccc;
+        }
+        main .av-layout ul .img{
+            margin-top: 80px;
+        }
+        main .av-layout ul .img img{}
+        main .av-layout ul .title{
+            font-size: 35px;
+            font-weight: bold;
+            margin-top: 30px;
+        }
+        main .av-layout ul .sub{
+            font-size: 16px;
+            font-weight: bold;
+            color: gray;
+            margin-top: 10px;
+        }
+        main .av-layout ul .button{
+            background-color: #fdc50c;
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            padding: 13px 16px;
+            color: white;
+            margin-top: 8px;
+            border-radius: 3px;
+            margin-bottom: 50px;
+        }
+        
+        main .mlast{
+            background-color: #616161;
+        }
+      
+        main .mlast ul{
+            margin-top: 50px;
+        }
+        main .mlast ul li{
+            
+        }
+        main .mlast ul li .name{
+            color: white;
+            font-weight: bold;
+            margin-left: 5px;
+            text-align: left;
+            margin-bottom: 10px;
+            
+        }
+        main .mlast ul li .small{
+            float: left;
+        }
+        main .mlast ul li .small img{
+            padding: 5px 10px;
+            display: inline-block;
+            text-align: left;
+            
+        }
+        main .mlast ul li .title{
+            float: right;
+            color: white;
+            text-align: left;
+            margin-top: 3px;
+        }
+        main .mlast ul li .sub{
+            font-size: 10px;
+            color: #ccc;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+        
+        main .mlast .lastslide{}
+        main .mlast .lastslide .swiper-slide{}
+        main .mlast .lastslide .swiper-slide.t1{
+            background-image: url(./img/asd (1).jpg);
+        }
+        main .mlast .lastslide .swiper-slide.t2{
+            background-image: url(./img/asd (2).jpg);
+        }
+        main .mlast .lastslide .swiper-slide img{
+            width: 50%;
+            height: 200px;
+        }
+        
+        footer{
+            
+        }
+        footer .footer{
+            width: 100%;
+            background-color: black;
+            padding: 20px;
+        }
+        footer .footer .left{
+            color: gray;
+        }
+        footer .footer .left li{
+            font-size: 13px;
+            float: left;
+        }
+        footer .footer .right{
+            font-size: 13px;
+            float: right;
+        }
+        footer .footer .right li{
+            color: gray;
+            margin: 0px 10px;
+        }
+        
+        
+        
+        @media only screen and (min-width:100px)
+        and (max-width:500px){
+            main .mslider .swiper-slide img {
+                width: 90%;
+            }
+            main .mslider .swiper-slide .title {
+                font-size: 25px;
+            }
+            
+            main .list{
+                display: grid;
+                grid-template-columns: 1fr;
+            }
+            main .list.grid2 li .title{
+                font-size: 30px;
+                
+            }
+            main .list.grid2 li .sub{
+                font-size: 15px;
+                letter-spacing: -1px;
+                text-align: center;
+            }
+            main .list.grid2 li img {
+                width: 90% ;
+                height: 90%;
+            }
+            .swiper-button-prev, .swiper-container-rtl .swiper-button-next{
+                margin-top: 200px;
+            }
+            .swiper-button-next, .swiper-container-rtl .swiper-button-prev{
+                margin-top: 200px;
+            }
+            
+            main .swiper-container.mlist .swiper-slide .name {
+                font-size: 12px;
+                margin-top: 5px;
+                line-height: 1;
+
+            }
+            main .swiper-container.mlist .swiper-slide .sub {
+                font-size: 10px;
+                margin-top: 5px;
+                line-height: 1;
+            }
+            footer .footer .right{
+            margin: 0px 115px;
+             
+        }
+    </style>
+    <body>
+        <header>
+            <div class="bar">
+                <div class="wrap">
+                   <ul>
+                       <li>로그인</li>
+                       <li>회원가입</li>
+                       <li>메뉴안내</li>
+                       <li>개설문의</li>
+                   </ul>
+                </div>
+            </div>
+            
+           <div class="bar2">
+               <div class="wrap">
+            <a id="logo" href="#"></a>
+            
+                <nav id="menu">
+                   <div class="pc">
+                        <ul>
+                            <li>PIZZA SCHOOL
+                                <ul>
+                                    <li><a href="#">피자스쿨 이야기</a></li>
+                                    <li><a href="#">건강한 재료 이야기</a></li>
+                                    <li><a href="#">인재채용</a></li>
+                                    <li><a href="#">오시는길</a></li>
+                                </ul>
+                            </li>
+                            <li>MENU</li>
+                            <li>STORE</li>
+                            <li>NEWS
+                                <ul>
+                                    <li><a href="#">공지사항</a></li>
+                                    <li><a href="#">보도자료</a></li>
+                                    <li><a href="#">이벤트</a></li>
+                                </ul>
+                            </li>
+                            <li>FRANCHISE
+                                <ul>
+                                    <li><a href="#">개설조건 및 절차</a></li>
+                                    <li><a href="#">개설문의</a></li>
+                                </ul>
+                            </li>
+                            <li>CS CENTER</li>
+                        </ul>    
+                    </div>
+
+                    <div class="mobile">
+                        <div class="button">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                    <div class="menubox">
+                        <div class="close">
+                            <img src="./img/btn_close01.png" alt="">
+                        </div>
+                            <ul>
+                                <li><a href="">PIZZA SCHOOL</a></li><br>
+                                <li><a href="">MENU</a></li><br>
+                                <li><a href="">STORE</a></li><br>
+                                <li><a href="">NEWS</a></li><br>
+                                <li><a href="">FRANCHISE</a></li><br>
+                                <li><a href="">CS CENTER</a></li><br>
+                            </ul>
+                        </div>
+                    </div>    
+                </nav>
+                
+                </div>
+            </div>    
+        </header>
+        <main>
+            <div class="swiper-container mslider">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide t1">
+                        <img src="./img/main-tit1.png"alt="">
+                        <div class="title">피자스쿨은 신선한 재료만을 사용합니다.</div>
+                        <a  class="button"href="">
+                            피자스쿨 이야기
+                        </a>
+                    </div>
+                    <div class="swiper-slide t2">
+                         <img src="./img/main-tit2.png" alt="">
+                        <div class="title">피자스쿨은 꼭! 정직한 피자를 만들고 싶었습니다.</div>
+                        <a  class="button"href="">
+                            건강한 재료 이야기
+                        </a>
+                    </div>
+                    <div class="swiper-slide t3">
+                         <img src="./img/main-tit3.png" alt="">
+                        <div class="title">피자스쿨은 자연 치즈를 사용합니다.</div>
+                        <a  class="button"href="">
+                            피자스쿨 이야기
+                        </a>
+                    </div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>    
+            </div>
+            
+            <div class="wrap">
+               <div class="list grid2">
+                    <ul>
+                        <li>
+                           <div class="title">OUR STORY</div>
+                            <div class="sub">항상 저희 피자스쿨을 사랑해 주셔서 감사합니다!
+                            피자스쿨은 Take-out 전문업체로서 피자스쿨만의 기름기 없고 담백한 도우와 특제 소스를 개발하여, 저렴하지만 최고의 품질을 갖춘 피자를 만들기 위해 노력하고 있습니다.</div>
+                            <a  class="button" href="">피자스쿨 이야기</a>
+                        </li>
+                    </ul>
+                
+                    <ul>
+                        <li><img src="./img/main_about_img1_new.jpg" alt=""></li>
+                    </ul>
+                </div>    
+            </div>
+
+            
+            <div class="list">
+                <div class="title">MENU</div>
+                <div class="sub">피자스쿨의 대표메뉴와 사이드메뉴를 소개합니다.
+                </div>
+            </div>
+            <div class="wrap">
+                <div class="swiper-container mlist">
+                    <div class="swiper-wrapper">
+                      <div class="swiper-slide">
+                          <img src="./img/1.jpg" alt="">
+                          <div class="name">스테이크피자</div>
+                          <div class="sub">스테이크의 진한 풍미를 느끼다!</div>
+                          <div class="pay">10,000원</div>
+                      </div>
+                      <div class="swiper-slide">
+                          <img src="./img/2.jpg" alt="">
+                          <div class="name">까르보네피자</div>
+                          <div class="sub">느끼함과 부드러움으로 여심을 사로잡는</div>
+                          <div class="pay">10,000원</div>
+                      </div>
+                      <div class="swiper-slide">
+                          <img src="./img/3.jpg" alt="">
+                          <div class="name">아이리쉬포테이토피자</div>
+                          <div class="sub">담백한 아이리쉬포테이토 피자</div>
+                          <div class="pay">9,000원</div>
+                      </div>
+                      <div class="swiper-slide">
+                          <img src="./img/4.jpg" alt="">
+                          <div class="name">깐쇼새우피자</div>
+                          <div class="sub">새콤달콤한 깐쇼새우피자</div>
+                          <div class="pay">12,000원</div>
+                      </div>
+                      <div class="swiper-slide">
+                          <img src="./img/5.jpg" alt="">
+                          <div class="name">도이치바이트피자</div>
+                          <div class="sub">치즈롤을 하나씩 입 안에 쏙쏙</div>
+                          <div class="pay">12,000원</div>
+                      </div>
+                      <div class="swiper-slide">
+                          <img src="./img/6.jpg" alt="">
+                          <div class="name">멕시칸바이트피자</div>
+                          <div class="sub">치즈롤과 핫 바베큐 치킨의 환상적 조합</div>
+                          <div class="pay">12,000원</div>
+                      </div>
+                      <div class="swiper-slide">
+                          <img src="./img/7.jpg" alt="">
+                          <div class="name">직화홀릭바이트피자</div>
+                          <div class="sub">직화로 구워 풍미가 가득한 불고기와 홀그<br>레인 머스터드 소스의 환상적인 만남</div>
+                          <div class="pay">12,000원</div>
+                      </div>
+                      <div class="swiper-slide">
+                          <img src="./img/8.jpg" alt="">
+                          <div class="name">야채퀘사디아피자</div>
+                          <div class="sub">건강한 야채의 아삭함~ 야채퀘사디아피<br>자!</div>
+                          <div class="pay">12,000원</div>
+                      </div>
+                    </div> 
+                </div>
+                <div class="mbutton">
+                <a class="button" href="">전체메뉴보기</a>    
+                </div>
+            </div>
+            <div class="mainbanner">
+                <img src="./img/main-tit4.png" alt="">
+            </div>
+            
+            <div class="av-layout grid3">
+                <ul>
+                    <div class="img">
+                        <img src="./img/1446712532_Application-Map.png" alt="">
+                    </div>
+                    <div class="title">STORE</div>
+                    <div class="sub">보다 쉽고 빠르게 매장을 검색하세요!<br>
+                                    가까운 매장을 손쉽게 검색하고,<br>
+                                    매장정보를 바로 확인 할 수 있습니다!<br>
+                                    <br>
+                                    
+                    </div>
+                    <a class="button" href="#">매장검색</a>
+                </ul>
+                <ul>
+                    <div class="img">
+                        <img src="./img/1446712532_Application-information.png" alt="">
+                    </div>
+                    <div class="title">INFORMATION</div>
+                    <div class="sub">피자스쿨의 모든 제품에 관한 영양성분 및<br>
+                        알레르기 유발 성분에 관한 정보를 확인하실 수 있습니다.<br>
+                        <br>
+                        <br>
+                    </div>
+                    <a class="button" href="#">메뉴 보러가기</a>
+                </ul>
+                <ul>
+                    <div class="img">
+                        <img src="./img/1446712503_Shop.png" alt="">
+                    </div>
+                    <div class="title">FRANCHISE</div>
+                    <div class="sub">
+                        피자스쿨과 함께 하실 점주분들을 모십니다.<br>
+                        피자와 관련된 경험이 전혀 없어도 괜찮습니다.<br>
+                        실제 점주님들 거의 모든 분들이 무경험자이며, 오픈 전 매장을 운영할 수 있도록 교육<br>을 해드립니다.
+                    </div>
+                    <a class="button" href="#">자세히 보기</a>
+                </ul>
+            </div>
+               
+        </main>
+        <footer>
+            <div class="footer">
+              <div class="wrap">
+               <ul class="left">
+                   <li>주소 : 서울특별시 강서구 공항대로 503 / 전화 : 02-844-7070 / 팩스 : 02-844-0704 © Copyright - Pizza School. All Rights Reserved.</li>
+               </ul>
+               <ul class="right">
+                    <li>개인정보처리방침</li>
+                    <li>이용약관</li>
+               </ul>
+               </div>
+            </div>
+        </footer>
+    </body>
+    <script>
+        var swiper = new Swiper('.mslider', {
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+        },
+    });
+        var swiper = new Swiper('.mlist', {
+            slidesPerView: 3,
+            spaceBetween: 30,
+            slidesPerGroup: 3,
+            loop: true,
+            loopFillGroupWithBlank: true,
+            pagination: {
+            clickable: true,
+            },
+        });
+        
+        $(function(){
+            $("#menu .button").on("click",function(){
+                $("#menu .menubox").addClass("view");
+            });
+            
+            $("#menu .menubox .close").on("click",function(){
+                $("#menu .menubox").removeClass("view");
+            });
+	   });
+  </script>
+</html>

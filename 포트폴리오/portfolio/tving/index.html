@@ -1,0 +1,1730 @@
+<!doctype html>
+<html>
+	<head>
+		<title>TVING | 오늘의 노는 법</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="./lib/setup.css">
+		<link rel="stylesheet" href="./lib/swiper.css">
+		<script src="./lib/swiper.js"></script>
+		<script src="./lib/jquery.js"></script>
+		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+		
+		
+		<style>
+			
+			body{
+				background-color: #212121;
+				font-family: 'Noto Sans KR', sans-serif;
+			}
+		
+			header{
+				position: fixed;
+				top: 0px;
+				left: 0px;
+				width: 100%;
+				z-index: 9999;
+			}
+			header .top{
+				background-color: #e51c3e;
+			}
+			header .top ul{
+				text-align: right;
+			}
+			header .top ul li{}
+			header .top ul li a{
+				font-size: 11px;
+				color:#fafafa;
+				margin: 0px 4px;
+				line-height: 28px;
+			}
+			
+			header .header{
+				background-color: #ff1f45fa;
+			}
+			
+			header .header .flex{
+				display: flex;
+				justify-content: space-between;
+			}
+			
+			header .header #logo{
+				flex: 1;
+			}
+			header .header #logo h1{
+				font-size: 0px;
+				width: 200px;
+				height: 60px;
+				background-image: url(./img/logo.svg);
+				background-position: center;
+				background-size: 140px 20px;
+				background-repeat: no-repeat;
+			}
+			
+			header .header #menu{
+				flex: 3;
+			}
+			header .header #menu ul{}
+			header .header #menu ul li{}
+			header .header #menu ul li a{
+				color:white;
+				font-size: 24px;
+				font-weight: bold;
+				padding: 0px 4px;
+				margin: 0px 8px;
+				line-height: 60px;
+				letter-spacing: -1px;
+			}
+			
+			header .header #search{
+				flex: 1;
+				position: relative;
+			}
+			header .header #search .input{
+				width: 100%;
+				height: 36px;
+				background-color: #cc1837;
+				border-radius: 20px;
+				border: 0px;
+				position: absolute;
+				top: 50%;
+				right: 0px;
+				transform: translateY(-50%);
+				color:white;
+				padding: 4px 15px;
+				opacity: 0;
+				transition: opacity 1s;
+			}
+            header .header #search .input.view{
+				opacity: 1;
+			}
+			header .header #search .button{
+				border: 0px;
+				background-image: url(./img/searh.svg);
+				width: 25px;
+				height: 25px;
+				background-size: contain;
+				background-repeat: no-repeat;
+				background-position: center;
+				background-color: transparent;
+				position: absolute;
+				top: 50%;
+				right: 10px;
+				transform: translateY(-50%);
+			}
+		
+			
+			main{}
+			main .headbar{
+				height: 240px;
+				background-color: #ff1f45fa;
+			}
+			
+			main .main{
+				margin-top: -140px;
+			}
+			main .main .swiper-container{}
+			main .main .swiper-container .swiper-button-next,
+			main .main .swiper-container .swiper-button-prev{
+				width: 60px;
+				height: 60px;
+				border: 2px solid #888;
+				border-radius: 100%;
+			}
+			
+			main .main .swiper-container .swiper-button-next::after,
+			main .main .swiper-container .swiper-button-prev::after{
+				font-size: 24px;
+				color:#eee;
+			}
+			
+			
+			main .channel{
+				display: grid;
+				grid-template-columns: 200px 1fr;
+				padding: 80px 0px 20px;
+				margin: 40px 0px 10px;
+				border-top: 1px solid #5555;
+			}
+			
+			main .channel .panel{}
+			main .channel .panel .title{
+				position: relative;
+			}
+			main .channel .panel .title::before{
+				content: " ";
+				font-size: 0px;
+				width: 50px;
+				height: 5px;
+				background-color: #ff584a;
+				position: absolute;
+				top: 0px;
+				left: 0px;
+			}
+            main .channel.vod .panel .title::before{
+				background-color: #387dff;
+			}
+            main .channel.clip .panel .title::before{
+				background-color: #fd8163;
+			}
+            main .channel.movie .panel .title::before{
+				background-color: #7d57fc;
+			}}
+            main .channel.event .panel .title::before{
+				background-color: #ff1f45;
+			}
+            
+			main .channel .panel .title .name{
+				color:white;
+				font-size: 46px;
+				font-weight: bold;
+				text-align: left;
+				padding: 15px 0px 10px;
+			}
+			main .channel .panel .title .sub{
+				color:white;
+				text-align: left;
+				font-size: 22px;
+			}
+			
+			main .channel .panel .tap{
+				margin-top: 20px;
+				text-align: left;
+			}
+			main .channel .panel .tap .button{
+				background-color: #444;
+				color:#999;
+				line-height: 30px;
+				padding: 0px 15px;
+				display: inline-block;
+				border-radius: 20px;
+				margin: 0px 2px;
+				font-size: 12px;
+			}
+			
+			main .channel .panel .tap .button.view{
+				background-color: #f5f5f5;
+				color:#555;
+			}
+			
+			
+			main .channel .content{}
+			main .channel .content ul{
+				grid-gap: 20px;
+			}
+			main .channel.live .content ul li{
+				background-color: #2e2e2e;
+				
+			}
+            main .channel .content ul li{
+                transition: transform 0.3s;
+                border-radius: 4px;
+            }
+            main .channel .content ul li:hover{
+                transform: translateY(-5px);
+            }
+			main .channel .content ul li a{}
+			main .channel .content ul li a .img{}
+			main .channel .content ul li a .img img{
+				width: 100%;
+				border-top-left-radius: 4px;
+				border-top-right-radius: 4px;
+			}
+			
+			main .channel.live .content ul li a .content{
+				padding: 20px 0px 10px;
+				display: grid;
+				grid-template-columns: 80px 1fr 60px;
+			}
+			
+			main .channel.live .content ul li a .content .icon{
+				margin: 5px 10px;
+				position: relative;
+			}
+			
+			main .channel.live .content ul li a .content .icon::after,
+			main .channel.live .content ul li a .content .icon::before{
+				position: absolute;
+				content: " ";
+				font-size: 0px;
+				background-color: #ccc;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%,-50%);
+				width: 50px;
+				height: 50px;
+				border-radius: 100%;
+                z-index: 1;
+			}
+			
+			main .channel.live .content ul li a .content .icon span{
+				display: inline-block;
+				background-color: #ccc;
+				width: 46px;
+				height: 46px;
+				border-radius: 100%;
+				position: relative;
+				border:1px solid #2e2e2e;
+                z-index: 2;
+			}
+			main .channel.live .content ul li a .content .icon span img{
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%,-50%);
+			}
+			
+			
+			main .channel.live .content ul li a .content .icon.tvn span{
+				background-color: #fc0000;
+			}
+			main .channel.live .content ul li a .content .icon.tvn::before{
+				background-color: #fc0000;
+				/*rect(탑시작, 왼쪽끝, 탑끝, 왼쪽시작);*/
+				clip: rect(0px 25px 50px 0px);
+			}
+			main .channel.live .content ul li a .content .icon.tvn::after{
+				background-color: #fc0000;
+				/*rect(탑시작, 왼쪽끝, 탑끝, 왼쪽시작);*/
+				clip: rect(0px 25px 50px 0px);
+                transform: translate(-50%,-50%) rotate(-80deg);
+			}
+            
+            
+			main .channel.live .content ul li a .content .icon.ytn span{
+				background-color: #ff8c00;
+			}
+            main .channel.live .content ul li a .content .icon.ytn span img{
+                width: 50px;
+                height: 25px;
+            }
+			main .channel.live .content ul li a .content .icon.ytn::before{
+				background-color: #ff8c00;
+				/*rect(탑시작, 왼쪽끝, 탑끝, 왼쪽시작);*/
+				clip: rect(0px 25px 50px 0px);
+			}
+			main .channel.live .content ul li a .content .icon.ytn::after{
+				background-color: #2e2e2e;
+				/*rect(탑시작, 왼쪽끝, 탑끝, 왼쪽시작);*/
+				clip: rect(0px 25px 50px 0px);
+                transform: translate(-50%,-50%) rotate(-50deg);
+                width: 52px;
+                height: 52px;
+			}
+            
+            
+            main .channel.live .content ul li a .content .icon.xtvn span{
+				background-color: #fc0000;
+			}
+			main .channel.live .content ul li a .content .icon.xtvn::before{
+				background-color: #fc0000;
+				/*rect(탑시작, 왼쪽끝, 탑끝, 왼쪽시작);*/
+				clip: rect(0px 25px 50px 0px);
+			}
+			main .channel.live .content ul li a .content .icon.xtvn::after{
+				background-color: #fc0000;
+				/*rect(탑시작, 왼쪽끝, 탑끝, 왼쪽시작);*/
+				clip: rect(0px 25px 50px 0px);
+                transform: translate(-50%,-50%) rotate(50deg);
+			}
+            
+            
+            main .channel.live .content ul li a .content .icon.jtbc span{
+				background-color: #ff1492;
+			}
+			main .channel.live .content ul li a .content .icon.jtbc::before{
+				background-color: #ff1492;
+				/*rect(탑시작, 왼쪽끝, 탑끝, 왼쪽시작);*/
+				clip: rect(0px 25px 50px 0px);
+			}
+			main .channel.live .content ul li a .content .icon.jtbc::after{
+				background-color: #ff1492;
+				/*rect(탑시작, 왼쪽끝, 탑끝, 왼쪽시작);*/
+				clip: rect(0px 25px 50px 0px);
+                transform: translate(-50%,-50%) rotate(-20deg);
+			}
+            
+            
+            main .channel.live .content ul li a .content .icon.new span{
+				background-color: #387dff;
+			}
+            main .channel.live .content ul li a .content .icon.new span img{
+                width: 50px;
+                height: 20px;
+            }
+			main .channel.live .content ul li a .content .icon.new::before{
+				background-color: #387dff;
+				/*rect(탑시작, 왼쪽끝, 탑끝, 왼쪽시작);*/
+				clip: rect(0px 25px 50px 0px);
+			}
+			main .channel.live .content ul li a .content .icon.new::after{
+				background-color: #2e2e2e;
+				/*rect(탑시작, 왼쪽끝, 탑끝, 왼쪽시작);*/
+				clip: rect(0px 26px 52px 0px);
+                transform: translate(-50%,-50%) rotate(-30deg);
+                width: 52px;
+                height: 52px;
+			}
+            
+            
+            main .channel.live .content ul li a .content .icon.jtbc2 span{
+				background-color: #ffc031;
+			}
+			main .channel.live .content ul li a .content .icon.jtbc2::before{
+				background-color: #ffc031;
+				/*rect(탑시작, 왼쪽끝, 탑끝, 왼쪽시작);*/
+				clip: rect(0px 25px 50px 0px);
+			}
+			main .channel.live .content ul li a .content .icon.jtbc2::after{
+				background-color: #ffc031;
+				/*rect(탑시작, 왼쪽끝, 탑끝, 왼쪽시작);*/
+				clip: rect(0px 25px 50px 0px);
+                transform: translate(-50%,-50%) rotate(-150deg);
+			}
+			
+			main .channel.live .content ul li a .content .title{
+				text-align: left;
+			}
+			main .channel.live .content ul li a .content .title .name{
+				color:#f5f5f5;
+				font-size: 16px;
+				margin:4px 0px;
+			}
+			main .channel.live .content ul li a .content .title .sub{
+				color:#666;
+			}
+			
+			main .channel.live .content ul li a .content .number{
+				font-size: 34px;
+				font-weight: bold;
+				color:white;
+			}
+			
+            main .channel.vod .content ul li a{}
+            main .channel.vod .content ul li a .img{}
+            main .channel.vod .content ul li a .img img{
+                border-radius: 4px;
+            }
+            main .channel.vod .content ul li a .title{
+                margin-top: 15px;
+                text-align: left;
+            }
+            main .channel.vod .content ul li a .title .name{
+                color: white;
+                font-size: 15px;
+            }
+            main .channel.vod .content ul li a .title .sub{
+                margin-top: 3px;
+                color: #666;
+                font-size: 13px;
+            }
+            
+            main .channel.clip .content ul li a .img{
+                position: relative;
+            }
+            main .channel.clip .content ul li a .img::before{
+                content: "1";
+                font-size: 20px;
+                font-weight: bold;
+                color: white;
+                background-color: #fd8163;
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                width: 40px;
+                line-height: 40px;
+                text-align: center;
+                border-top-left-radius: 4px;
+                border-bottom-right-radius: 4px;
+            }
+            main .channel.clip .content ul li a .img img{
+                border-radius: 4px;
+            }
+            main .channel.clip .content ul li a .title{
+                margin-top: 10px;
+                text-align: left;
+            }
+            main .channel.clip .content ul li a .title .name{
+                color: white;
+            }
+            main .channel.clip .content ul li a .title .sub{
+                color: #666;
+                font-size: 13px;
+            }
+            
+            main .channel.clip .content ul li:nth-child(2) .img::before{
+                content: "2";
+            }
+            main .channel.clip .content ul li:nth-child(3) .img::before{
+                content: "3";
+            }
+            main .channel.clip .content ul li:nth-child(4) .img::before{
+                content: "4";
+            }
+            main .channel.clip .content ul li:nth-child(5) .img::before{
+                content: "5";
+            }
+            main .channel.clip .content ul li:nth-child(6) .img::before{
+                content: "6";
+            }
+            main .channel.clip .content ul li:nth-child(7) .img::before{
+                content: "7";
+            }
+            main .channel.clip .content ul li:nth-child(8) .img::before{
+                content: "8";
+            }
+            
+            main .channel.movie .content ul li a .img{
+                position: relative;
+            }
+            main .channel.movie .content ul li a .img::before{
+                content: "1";
+                font-size: 20px;
+                font-weight: bold;
+                color: white;
+                background-color: #7d57fc;
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                width: 40px;
+                line-height: 40px;
+                text-align: center;
+                border-top-left-radius: 4px;
+                border-bottom-right-radius: 4px;
+            }
+            main .channel.movie .content ul li a .img::after{
+                content: "15";
+                font-size: 16px;
+                font-weight: bold;
+                color: white;
+                background-color: #e79d28;
+                position: absolute;
+                top: 5px;
+                right: 5px;
+                width: 35px;
+                line-height: 35px;
+                text-align: center;
+                border-radius: 100%;
+            }
+            
+            main .channel.movie .content ul li a .img img{}
+            main .channel.movie .content ul li:nth-child(2) .img::before{
+                content: "2";
+            }
+            main .channel.movie .content ul li:nth-child(3) .img::before{
+                content: "3";
+            }
+            main .channel.movie .content ul li:nth-child(4) .img::before{
+                content: "4";
+            }
+            main .channel.movie .content ul li:nth-child(5) .img::before{
+                content: "5";
+            }
+            
+            main .channel.movie .content ul li:nth-child(2) .img::after{
+                content: "12";
+                background-color: #22a2dc;
+
+            }
+            main .channel.movie .content ul li:nth-child(3) .img::after{
+                content: "12";
+                background-color: #22a2dc;
+            }
+            main .channel.movie .content ul li a .title{
+                text-align: left;
+                margin-top: 10px;
+            }
+            main .channel.movie .content ul li a .title .name{
+                color: white;
+            }
+            main .channel.movie .content ul li a .title .sub{
+                color: #666;
+                font-size: 13px;
+            }
+            
+            main .channel.tving{}
+            main .channel.tving .panel{}
+            main .channel.tving .panel .titles{}
+            main .channel.tving .panel .titles .sub{
+                color:white;
+				text-align: left;
+				font-size: 22px;
+            }
+            main .channel.tving .panel .titles .button{
+				background-color: #444;
+				color:#999;
+				line-height: 30px;
+				padding: 0px 15px;
+				display: inline-block;
+				border-radius: 20px;
+				margin: 0px 2px;
+				font-size: 12px;
+			}
+			
+			main .channel.tving .panel .titles .button.view{
+				background-color: #f5f5f5;
+				color:#555;
+			}
+            main .channel.tving .content ul li a .img{
+                position: relative;
+            }
+            main .channel.tving .content ul li a .img::before{
+                content: "개별구매";
+                font-size: 14px;
+                font-weight: bold;
+                background-color: #7d57fcb5;
+                top: 2px;
+                left: 2px;
+                position: absolute;
+                padding: 4px;
+                color: white;
+                border-radius: 4px; 
+            }
+            main .channel.tving .content ul li:nth-child(4) a .img::before{
+                content: "Premium";
+            }
+
+
+            main .channel.tving .content ul li a .img::after{
+                content: "12";
+                font-size: 16px;
+                font-weight: bold;
+                color: white;
+                background-color: #22a2dc;
+                position: absolute;
+                top: 5px;
+                right: 5px;
+                width: 35px;
+                line-height: 35px;
+                text-align: center;
+                border-radius: 100%;
+            }
+            main .channel.tving .content ul li:nth-child(3) a .img::after{
+                content: "15";
+                background-color: #e79d28;
+            }
+            main .channel.tving .content ul li a .img img{
+                width: 100%;
+            }
+            main .channel.tving .content ul li a .img .box{
+                background-color: #e79d28c2;
+                width: 45px;
+                height: 30px;
+                position: absolute;
+                top: 40px;
+                left: 3px;
+                border-radius: 4px;
+                
+            }
+            main .channel.tving .content ul li a .img .boxs{
+                background-color: #a52a2a8a;
+                width: 55px;
+                height: 30px;
+                position: absolute;
+                bottom: 0px;
+                left: 6px;
+                border-radius: 4px;
+                
+            }
+            main .channel.tving .content ul li a .img p{
+                line-height: 30px;
+                white-space: nowrap;
+                color: white;
+                font-weight: bold;
+                
+                
+            }
+            main .channel.tving .content ul li a .img .info{
+                 position: absolute;
+                background-color: rgba(46,46,46,.98);
+                top: 0px;
+                left: 0px;
+                width: 100%;
+                height: 100%;
+                padding: 20px;
+                text-align: left;
+                border-radius: 4px;
+                opacity: 0;
+                z-index: 999;
+            }
+            main .channel.tving .content ul li:hover a .img .info{
+                opacity: 1;
+            }
+            main .channel.tving .content ul li a .img .info .type{
+                color: #ccc;
+                font-size: 16px;
+                margin-top: 20px;
+            }
+            main .channel.tving .content ul li a .img .info .one{
+                color: gray;
+                font-size: 14px;
+                padding: 5px 0px;
+                
+            }
+            main .channel.tving .content ul li a .img .info .two{
+                color: #ccc;
+                font-size: 12px;
+            }
+            main .channel.tving .content ul li a .title{
+                text-align: left;
+                margin-top: 10px;
+            }
+            main .channel.tving .content ul li a .title .name{
+                color: white;
+            }
+            
+            
+            main .channel.event .panel .tap2 .button{
+                background-color: #444;
+				color:#999;
+				line-height: 30px;
+				width: 110px;
+				display: inline-block;
+				border-radius: 20px;
+				font-size: 14px;
+                float: left;
+                white-space: nowrap;
+            }
+            main .channel.event .content ul li a .title{
+                text-align: left;
+                margin-top: 10px;
+            }
+            main .channel.event .content ul li a .title .name{
+                color: white;
+            }
+            main .channel.event .content ul li a .title .sub{
+                color: #666;
+                margin-top: 3px;
+                font-size: 13px;
+            }
+            
+            main #top{
+				width: 50px;
+				height: 50px;
+				border-radius: 100%;
+				color:white;
+				background-color: black;
+				position: fixed;
+				bottom: 40px;
+				right: 20px;
+				background-image: url(./img/arrow-top.svg);
+				background-position: center;
+				background-size: 16px 16px;
+				background-repeat: no-repeat;
+				opacity: 0;
+				transform: translate(1000px, 1000px);
+				transition: opacity 1s, transform 0s 1s;
+            }
+            
+            main #top.view{
+				opacity: 1;
+				transform: translate(0px, 0px);
+				transition: opacity 1s;
+			}
+            
+            
+            footer{
+				margin-top: 100px;
+				background-color: #1c1c1c;
+			}
+			
+			footer .top{
+				border-bottom: 1px solid #666;
+			}
+			
+			footer .top .notice{
+                float: left;
+			}
+			footer .top .notice .name{
+				color:white;
+				line-height: 50px;
+				font-size: 13px;
+				font-weight: 400;
+				display: inline-block;
+			}
+			footer .top .notice .context{
+				color:#888;
+				line-height: 50px;
+				font-size: 13px;
+				display: inline-block;
+				margin: 0px 10px;
+			}
+            footer .top .selects{
+                float: right;
+			}
+
+			footer .top .selects .select{
+				position: relative;
+				width: 200px;
+				height: 40px;
+				display: inline-block;
+				margin-top: 8px;
+			}
+			footer .top .selects .select .list{
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				width: 100%;
+				background-color: #141414;
+				height: 0px;
+				overflow: hidden;
+				transform: translateY(-100%);
+				border-top-left-radius: 10px;
+				transition: height 1s;
+			}
+			
+			footer .top .selects .select.view .list{
+				height: 260px;
+				overflow-y: scroll;
+			}
+			
+			
+			/* SCROLL */
+			/* 스크롤바의 width */
+			footer .top .selects .select .list::-webkit-scrollbar { width: 8px; }
+			
+			/* 스크롤바의 전체 배경색 */
+			footer .top .selects .select .list::-webkit-scrollbar-track { background-color: #222; }
+			
+			/* 스크롤바 색 */
+			footer .top .selects .select .list::-webkit-scrollbar-thumb {
+				background-color: #666;
+			}
+			
+			/* 위 아래 버튼 (버튼 없애기를 함) */
+			footer .top .selects .select .list::-webkit-scrollbar-button { display: none; }
+			
+
+			
+			footer .top .selects .select .list li{
+				width: 100%;
+				font-size: 12px;
+				text-align: left;
+				color:#555;
+				padding: 0px 10px;
+			}
+			footer .top .selects .select .list li a{
+				color:#666;
+				font-size: 12px;
+				width: 100%;
+				height: 100%;
+				text-align: left;
+				padding: 0px 15px;
+				margin: 5px 0px;
+			}
+			footer .top .selects .select .list li a:hover{
+				color:white;
+				font-weight: bold;
+			}
+			
+			
+			
+			
+			
+			
+			
+			footer .top .selects .select .button{
+				background-color: #141414;
+				width: 100%;
+				height: 36px;
+				border-radius: 20px;
+				padding: 0px 15px;
+				transition: border 1s;
+			}
+			
+			footer .top .selects .select.view .button{
+				border-top-left-radius: 0px;
+				border-top-right-radius: 0px;
+				border-bottom-right-radius: 5px;
+				border-bottom-left-radius: 5px;
+			}
+			
+			footer .top .selects .select .button .name{
+				float: left;
+				color:#555;
+				font-size: 12px;
+				line-height: 36px;
+			}
+			
+			footer .top .selects .select .button::after{
+				content: "+";
+				color:#555;
+				font-size: 15px;
+				line-height: 36px;
+				position: absolute;
+				transform: translate(-50%, -50%);
+				top: 45%;
+				right: 10px;
+			}
+			
+			footer .top .selects .select.view .button::after{
+				content: "-";
+			}
+			
+            footer .footer{
+                margin-top: 30px;
+            }   
+            footer .footer a{
+                color: #969697;
+                margin: 0px 8px;
+            }   
+            footer .footer a p{
+                color: #fafafa;
+                font-weight: 600;
+            }  
+            
+            footer .footer-bottom{
+            }
+            footer .footer-bottom ul{
+                margin-top: 20px;
+                
+            }
+            footer .footer-bottom ul li{
+                color: #9696976e;
+                font-size: 12px;
+                margin: 2px 5px;
+               
+            }
+            footer .footer-bottom ul li span{
+                width: 1px;
+                height: 11px;
+                margin-left: 10px;
+                border-right: 1px solid #9696976e;
+                display: inline-block;
+                margin-top: 4px;
+            }
+            footer .footer-bottom ul li a{
+                color: gray;
+                font-size: 12px;
+                border-bottom: 1px solid gray;
+            }
+            
+            
+            footer .copyright{
+                color: #9696976e;
+                font-size: 12px;
+                margin-top: 20px;
+            }
+            footer .cjlogo{
+                margin-top: 20px;
+            }
+            footer .cjlogo img{}
+		</style>
+		
+		
+	</head>
+	<body id="first">
+		<header>
+			<div class="top">
+				<div class="wrap">
+					<ul>
+						<li><a href="#">로그인</a></li>
+						<li><a href="#">이용권</a></li>
+						<li><a href="#">편성표</a></li>
+						<li><a href="#">이벤트</a></li>
+						<li><a href="#">다운로드</a></li>
+						<li><a href="#">티빙키즈</a></li>
+					</ul>
+				</div>
+			</div>
+			
+			<div class="header">
+				<div class="wrap">
+					<div class="flex">
+						<a id="logo" href="#">
+							<h1>TVING</h1>
+						</a>
+
+						<nav id="menu">
+							<ul>
+								<li><a href="#">LIVE</a></li>
+								<li><a href="#">VOD</a></li>
+								<li><a href="#">MOVIE</a></li>
+								<li><a href="#">CLIP</a></li>
+								<li><a href="#">MUSIC</a></li>
+								<li><a href="#">STYLE</a></li>
+								<li><a href="#">MALL</a></li>
+							</ul>
+						</nav>
+
+						<div id="search">
+							<form action="" method="get">
+								<input type="text" class="input">	
+								<input type="button" class="button">
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</header>
+		<main>
+			<div class="headbar"></div>
+			
+			<div class="main">
+				<div class="wrap">
+					<div class="swiper-container">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide">
+								<img src="./img/slide01.png" alt="">
+							</div>
+							<div class="swiper-slide">
+								<img src="./img/slide02.png" alt="">
+							</div>
+							<div class="swiper-slide">
+								<img src="./img/slide03.png" alt="">
+							</div>
+							<div class="swiper-slide">
+								<img src="./img/slide04.png" alt="">
+							</div>
+							<div class="swiper-slide">
+								<img src="./img/slide05.png" alt="">
+							</div>
+						</div>
+						
+						<!-- Add Arrows -->
+						<div class="swiper-button-next"></div>
+						<div class="swiper-button-prev"></div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- LIVE -->
+			<div class="wrap">
+				<div class="channel live">
+					<div class="panel">
+						<div class="title">
+							<div class="name">LIVE</div>
+							<div class="sub">실시간 인기채널</div>
+						</div>
+						
+						<div class="tap">
+							<div class="button view">실시간TV</div>
+							<div class="button">TVING TV</div>
+						</div>
+						
+					</div>
+					<div class="content">
+						
+						<ul class="grid3">
+							<li>
+								<a href="#">
+									<div class="img">
+										<img src="./img/live01.jpg" alt="">
+									</div>
+									<div class="content">
+										<div class="icon tvn">
+											<span>
+												<img src="./img/tvn.png" alt="">
+											</span>
+										</div>
+										<div class="title">
+											<div class="name">사건반장</div>
+											<div class="sub">24%</div>
+										</div>
+										<div class="number">1</div>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<div class="img">
+										<img src="./img/live02.jpg" alt="">
+									</div>
+									<div class="content">
+										<div class="icon ytn">
+										    <span>
+										        <img src="./img/YTN.png" alt="">
+										    </span>
+										</div>
+										<div class="title">
+											<div class="name">뉴스특보</div>
+											<div class="sub">14.8%</div>
+										</div>
+										<div class="number">2</div>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<div class="img">
+										<img src="./img/live03.jpg" alt="">
+									</div>
+									<div class="content">
+										<div class="icon xtvn">
+										    <span>
+										        <img src="./img/Xtvn.png" alt="">
+										    </span>
+										</div>
+										<div class="title">
+											<div class="name">유퀴즈 온 더 블럭 50화</div>
+											<div class="sub">10%</div>
+										</div>
+										<div class="number">3</div>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<div class="img">
+										<img src="./img/live04.jpg" alt="">
+									</div>
+									<div class="content">
+										<div class="icon jtbc">
+                                            <span>
+										    <img src="./img/jtbc.png" alt="">
+                                            </span>    
+										</div>
+										<div class="title">
+											<div class="name">뉴스 1번지</div>
+											<div class="sub">6.7%</div>
+										</div>
+										<div class="number">4</div>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<div class="img">
+										<img src="./img/live05.jpg" alt="">
+									</div>
+									<div class="content">
+										<div class="icon new">
+                                            <span>
+										    <img src="./img/newTv.png" alt="">
+                                            </span>    
+										</div>
+										<div class="title">
+											<div class="name">밀회 6화</div>
+											<div class="sub">5.3%</div>
+										</div>
+										<div class="number">5</div>
+									</div>
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									<div class="img">
+									    <span>
+										<img src="./img/live06.jpg" alt="">
+                                        </span>    
+									</div>
+									<div class="content">
+										<div class="icon jtbc2">
+                                            <span>
+										    <img src="./img/jtbc2.png" alt="">
+                                            </span>    
+										</div>
+										<div class="title">
+											<div class="name">놀라운 토요일-도레미...</div>
+											<div class="sub">5.3%</div>
+										</div>
+										<div class="number">6</div>
+									</div>
+								</a>
+							</li>
+							
+							
+						</ul>
+						
+					</div>
+				</div>
+			</div>
+			
+			<!-- VOD -->
+			<div class="wrap">
+			    <div class="channel vod">
+			        <div class="panel">
+			            <div class="title">
+			                <div class="name">VOD</div>
+			                <div class="sub">프로그램 다시보기</div>
+			            </div>
+			            <div class="tap">
+			                <div class="button view">인기</div>
+							<div class="button">최신</div>
+			            </div>
+			        </div>
+			        <div class="content">
+			            <ul class="grid3">
+			                <li>
+                                <a href="">
+                                    <div class="img">
+                                        <img src="./img/vod1.jpg" alt="">
+                                    </div>
+                                    <div class="title">
+                                        <div class="name">부부의세계 8화</div>
+                                        <div class="sub">JTBC 2020.04.18 토</div>
+                                    </div>
+			                    </a>
+			                </li>
+			                <li>
+                                <a href="">
+                                    <div class="img">
+                                        <img src="./img/vod2.jpg" alt="">
+                                    </div>
+                                    <div class="title">
+                                        <div class="name">아는형님 226화</div>
+                                        <div class="sub">JTBC 2020.04.18 토</div>
+                                    </div>
+			                    </a>
+			                </li>
+			                <li>
+                                <a href="">
+                                    <div class="img">
+                                        <img src="./img/vod3.jpg" alt="">
+                                    </div>
+                                    <div class="title">
+                                        <div class="name">슬기로운 의사생활 6화</div>
+                                        <div class="sub">JTBC 2020.04.16 목</div>
+                                    </div>
+			                    </a>
+			                </li>
+			                <li>
+                                <a href="">
+                                    <div class="img">
+                                        <img src="./img/vod4.jpg" alt="">
+                                    </div>
+                                    <div class="title">
+                                        <div class="name">놀라운 토요일-도레미마켓 104화</div>
+                                        <div class="sub">JTBC 2020.04.18 토</div>
+                                    </div>
+			                    </a>
+			                </li>
+			                <li>
+                                <a href="">
+                                    <div class="img">
+                                        <img src="./img/vod5.jpg" alt="">
+                                    </div>
+                                    <div class="title">
+                                        <div class="name">하이바이, 마마!   16화</div>
+                                        <div class="sub">JTBC 2020.04.19 일</div>
+                                    </div>
+			                    </a>
+			                </li>
+			                <li>
+                                <a href="">
+                                    <div class="img">
+                                        <img src="./img/vod6.jpg" alt="">
+                                    </div>
+                                    <div class="title">
+                                        <div class="name">[무삭제판] 부부의 세계   6화</div>
+                                        <div class="sub">JTBC 2020.04.11 토</div>
+                                    </div>
+			                    </a>
+			                </li>
+			                
+			            </ul>
+			        </div>
+			    </div>
+			</div>
+			
+			<!-- CLIP -->
+			<div class="wrap">
+			    <div class="channel clip">
+			        <div class="panel">
+			            <div class="title">
+			                <div class="name">CLIP</div>
+			                <div class="sub">실시간 인기 클립</div>
+			            </div>
+			        </div>
+			        <div class="content">
+			            <ul class="grid4">
+			                <li>
+			                    <a href="">
+			                        <div class="img">
+			                            <img src="./img/clip1.jpg" alt="">
+			                        </div>
+			                        <div class="title">
+			                            <div class="name">[예고] '최연소 천하장사' 허선행의 패기 넘치는 ↙피지컬 퍼포먼스↗</div>
+			                            <div class="sub">캐시백 1화</div>
+			                        </div>
+			                    </a>
+			                </li>
+			                <li>
+			                    <a href="">
+			                        <div class="img">
+			                            <img src="./img/clip2.jpg" alt="">
+			                        </div>
+			                        <div class="title">
+			                            <div class="name">[16화 예고] 49일이 끝나는 날, 김태희의 마지막 선택은?</div>
+			                            <div class="sub">하이바이, 마마! 16화</div>
+			                        </div>
+			                    </a>
+			                </li>
+			                <li>
+			                    <a href="">
+			                        <div class="img">
+			                            <img src="./img/clip3.jpg" alt="">
+			                        </div>
+			                        <div class="title">
+			                            <div class="name">[미공개] 너는 피도 눈물도 없고 나는 실적이 없고(?)~ 미동댁&국봉 짝꿍의 우정♥</div>
+			                            <div class="sub">하이바이, 마마! 16화</div>
+			                        </div>
+			                    </a>
+			                </li>
+			                <li>
+			                    <a href="">
+			                        <div class="img">
+			                            <img src="./img/clip4.jpg" alt="">
+			                        </div>
+			                        <div class="title">
+			                            <div class="name">[7화 미리보기] 수술을 앞둔 유연석에게 발생한 긴급 상황?!</div>
+			                            <div class="sub">슬기로운 의사생활 6화</div>
+			                        </div>
+			                    </a>
+			                </li>
+			                <li>
+			                    <a href="">
+			                        <div class="img">
+			                            <img src="./img/clip5.jpg" alt="">
+			                        </div>
+			                        <div class="title">
+			                            <div class="name">[16화 예고] ＂정말.. 가야겠어?＂ 떠나려는 김태희와 붙잡는 이규형 그리고 이혼을 준비하는 고보결</div>
+			                            <div class="sub">하이바이, 마마! 16화</div>
+			                        </div>
+			                    </a>
+			                </li>
+			                <li>
+			                    <a href="">
+			                        <div class="img">
+			                            <img src="./img/clip6.jpg" alt="">
+			                        </div>
+			                        <div class="title">
+			                            <div class="name">＂내가 대신 다 할게요, 내가..＂ 방법이 없다는 사실을 받아들일 수 없는 이규형의 절규..</div>
+			                            <div class="sub">하이바이, 마마! 16화</div>
+			                        </div>
+			                    </a>
+			                </li>
+			                <li>
+			                    <a href="">
+			                        <div class="img">
+			                            <img src="./img/clip7.jpg" alt="">
+			                        </div>
+			                        <div class="title">
+			                            <div class="name">☆코빅덕질 2회☆ 코빅의 오동이(?) 신규진 편 (feat.선배들의 개그 교실)</div>
+			                            <div class="sub">코미디빅리그 356화</div>
+			                        </div>
+			                    </a>
+			                </li>
+                            <li>
+			                    <a href="">
+			                        <div class="img">
+			                            <img src="./img/clip8.jpg" alt="">
+			                        </div>
+			                        <div class="title">
+			                            <div class="name">[9화 예고] 최진혁, 희대의 연쇄살인마로 몰리다?!</div>
+			                            <div class="sub">루갈 8화</div>
+			                        </div>
+			                    </a>
+			                </li>
+			            </ul>
+			        </div>
+			    </div>
+			</div>
+			
+			<!-- MOVIE -->
+			<div class="wrap">
+                <div class="channel movie">
+                    <div class="panel">
+                        <div class="title">
+                            <div class="name">MOVIE</div>
+                            <div class="sub">박스오피스</div>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <ul class="grid5">
+                            <li>
+                                <a href="">
+                                    <div class="img">
+                                        <img src="./img/movie1.jpg" alt="">
+                                    </div>
+                                    <div class="title">
+                                        <div class="name">1917</div>
+                                        <div class="sub">관람객 785,042 명</div>
+                                    </div>   
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <div class="img">
+                                        <img src="./img/movie2.jpg" alt="">
+                                    </div> 
+                                    <div class="title">
+                                        <div class="name">엽문4-더 파이널</div>
+                                        <div class="sub">관람객 65,834 명</div>
+                                    </div>    
+                                     
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <div class="img">
+                                        <img src="./img/movie3.jpg" alt="">
+                                    </div>   
+                                    <div class="title">
+                                        <div class="name">주디</div>
+                                        <div class="sub">관람객 88,718 명</div>
+                                    </div>   
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <div class="img">
+                                        <img src="./img/movie4.jpg" alt="">
+                                    </div>  
+                                    <div class="title">
+                                        <div class="name">아비정전</div>
+                                        <div class="sub">관람객 22,643 명</div>
+                                    </div>    
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <div class="img">
+                                        <img src="./img/movie5.jpg" alt="">
+                                    </div>   
+                                    <div class="title">
+                                        <div class="name">그시절우리가좋아했던소녀</div>
+                                        <div class="sub">관람객 50,227 명</div>
+                                    </div>   
+                                </a>
+                            </li>
+                 
+                        </ul>
+                    </div>
+                </div>  
+			</div>
+			
+			<!-- TVING MOVIE -->
+			<div class="wrap">
+			    <div class="channel tving">
+                    <div class="panel">
+                        <div class="titles">
+                            <div class="sub">티밍 무비</div>
+                        </div>    
+                        
+                        <div class="tap">
+                            <div class="button view">인기</div>
+                            <div class="button">최신</div>
+                        </div>
+                    </div>
+                    
+                    <div class="content">
+                        <ul class="grid5">
+                           <li>
+                                <a href="">
+                                    <div class="img"><img src="./img/tving1.png" alt="">
+                                       <div class="boxs">
+                                           <p>자막판</p>
+                                        </div>  
+                                        <div class="info">
+                                            <div class="type">어벤져스- 엔드게임 [자막]</div>
+                                            <div class="one">액션</div>
+                                            <div class="two">감독 : 안소니 루소,주 루소</div>
+                                            <div class="two">배우 : 로버트 다우니 주니어, 크리스 에반스 ···</div>
+                                            <div class="one">인피니티 워 이후 절반만 살아남은 지구 
+                                            마지막 희망이 된 어벤져스 
+                                             ···</div>
+                                        </div>
+                                    </div>    
+                                    <div class="title">
+                                        <div class="name">어벤져스- 엔드게임 [자막]</div>
+                                    </div>
+                                </a>
+                            </li>
+                           <li>
+                                <a href="">
+                                    <div class="img"><img src="./img/tving2.png" alt="">
+                                        <div class="info">
+                                            <div class="type">정직한 후보</div>
+                                            <div class="one">코미디</div>
+                                            <div class="two">감독 : 장유정</div>
+                                            <div class="two">배우 : 라미란, 김무열, 나문희</div>
+                                            <div class="one">어제까진 뻥쟁이, 오늘부턴 정직한 후보?!
+                                            거짓말이 제일 쉬운 3선 ···</div>
+                                        </div>
+                                    </div>
+                                    <div class="title">
+                                        <div class="name">정직한 후보</div>
+                                    </div>
+                                </a>
+                            </li>
+                           <li>
+                                <a href="">
+                                    <div class="img"><img src="./img/tving3.png" alt="">
+                                        <div class="info">
+                                            <div class="type">남산의 부장들</div>
+                                            <div class="one">드라마</div>
+                                            <div class="two">감독 : 우민호</div>
+                                            <div class="two">배우 : 이병헌, 이성민, 곽도원, 이희준,  ···</div>
+                                            <div class="one">“각하, 제가 어떻게 하길 원하십니까”      1979년 10월 26일,  ···</div>
+                                        </div>
+                                    </div>
+                               
+                                    <div class="title">
+                                        <div class="name">남산의 부장들</div>
+                                    </div>
+                                </a>
+                            </li>
+                           <li>
+                                <a href="">
+                                    <div class="img"><img src="./img/tving4.png" alt="">
+                                        <div class="info">
+                                            <div class="type">엑시트</div>
+                                                <div class="one">드라마</div>
+                                                <div class="two">감독 : 이상근</div>
+                                                <div class="two">배우 : 이윤아, 조정석</div>
+                                                <div class="one">짠내 폭발 청년백수, 전대미문의 진짜 재난을 만나다! 대학교 산악  ···</div>
+                                        </div>
+                                    </div>
+                                
+                                <div class="title">
+                                    <div class="name">엑시트</div>
+                                </div>
+                                </a>
+                            </li>
+                           <li>
+                                <a href="">
+                                    <div class="img">
+                                       <img src="./img/tving5.png" alt="">
+                                       <div class="box">
+                                           <p>이벤트</p>
+                                        </div>   
+                                       <div class="boxs">
+                                           <p>극장동시</p>
+                                        </div>   
+                                        <div class="info">
+                                                <div class="type">엽문4- 더 파이널</div>
+                                                <div class="one">액션</div>
+                                                <div class="two">감독 : 엽위신</div>
+                                                <div class="two">배우 : 견자단, 스콧 앳킨슨, 진국곤</div>
+                                                <div class="one">이제 마지막을 함께 할 시간
+                                                아낌없이 불태운다!영춘권 최고수 ‘ ···</div> 
+                                        </div>  
+                                    </div>
+                                
+                                    <div class="title">
+                                        <div class="name">엽문4- 더 파이널</div>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>    
+			    </div>
+			</div>
+			
+			<!-- EVENT -->
+			<div class="wrap">
+			    <div class="channel event">
+			        <div class="panel">
+			            <div class="title">
+			                <div class="name">EVENT</div>
+			            </div>   
+			            
+			            <div class="tap2">
+			                <div class="button">당첨자발표 ></div>
+			            </div>
+			        </div>
+			        
+			        <div class="content">
+			            <ul class="grid3">
+			                <li>
+			                    <a href="">
+			                        <div class="img">
+			                            <img src="./img/event1.jpg" alt="">
+			                        </div>
+			                        
+			                        <div class="title">
+			                            <div class="name">[티빙몰] 신비아파트 어린이날 이벤트</div>
+			                            <div class="sub">2020-04-13 ~ 2020-04-28</div>
+			                        </div>
+			                    </a>
+			                </li>
+			                <li>
+			                    <a href="">
+			                        <div class="img">
+			                            <img src="./img/event2.png" alt="">
+			                        </div>
+			                        
+			                        <div class="title">
+			                            <div class="name"> <엽문4:더파이널> 출시기념 경품+할인 이벤트</div>
+			                            <div class="sub">2020-04-16 ~ 2020-05-03</div>
+			                        </div>
+			                    </a>
+			                </li>
+			                <li>
+			                    <a href="">
+			                        <div class="img">
+			                            <img src="./img/event3.png" alt="">
+			                        </div>
+			                        
+			                        <div class="title">
+			                            <div class="name">[롯데카드X우리은행] 공짜로 1년동안 티빙에서 놀자!</div>
+			                            <div class="sub">2020-04-01 ~ 2020-04-30</div>
+			                        </div>
+			                    </a>
+			                </li>
+			            </ul>
+			        </div>
+			    </div>
+			</div>
+			
+			<a id="top" href="#first"></a>
+			
+		</main>
+		<footer>
+		    <div class="top">
+				<div class="wrap">
+					<div class="notice">
+						<div class="name">공지사항</div>
+						<div class="context">[안내] 신규 해외시리즈 론칭 안내</div>
+					</div>
+					
+					<div class="selects">
+						
+						<div class="select">
+							<ul class="list">
+								<li><a href="#">tvN</a></li>
+								<li><a href="#">OtvN</a></li>
+								<li><a href="#">MNET</a></li>
+								<li><a href="#">ONSTYLE</a></li>
+								<li><a href="#">OLIVE</a></li>
+								<li><a href="#">XtvN</a></li>
+								<li><a href="#">OCN</a></li>
+								<li><a href="#">OCN Movies</a></li>
+								<li><a href="#">OCN Thrills</a></li>
+								<li><a href="#">TOONIVERSE</a></li>
+								<li><a href="#">중화TV</a></li>
+								<li><a href="#">OGN</a></li>
+								<li><a href="#">CATCH ON</a></li>
+								<li><a href="#">CH.DIA</a></li>
+								<li><a href="#">UXN</a></li>
+								<li><a href="#">enews24</a></li>
+							</ul>
+							<div class="button">
+								<div class="name">브랜드 바로가기</div>
+							</div>
+						</div>
+						<div class="select">
+							<ul class="list">
+								<li>CJ그룹</li>
+								<li><a href="#">CJ주식회사</a></li>
+								<li>엔터테인먼트 & 미디어</li>
+								<li><a href="#">CJ ENM(E&M)</a></li>
+								<li><a href="#">CJ CGV</a></li>
+								<li><a href="#">CJ파워캐스트</a></li>
+								<li>식품 & 식품서비스</li>
+								<li><a href="#">CJ제일제당(식품)</a></li>
+								<li><a href="#">CJ프레시웨이</a></li>
+								<li><a href="#">CJ푸드빌</a></li>
+								<li><a href="#">CJ엠디원</a></li>
+								<li>생명공학</li>
+								<li><a href="#">CJ제일제당(바이오)</a></li>
+								<li>신유통</li>
+								<li><a href="#">CJ ENM(오쇼핑)</a></li>
+								<li><a href="#">CJ대한통운</a></li>
+								<li><a href="#">CJ텔레닉스</a></li>
+								<li><a href="#">CJ올리브영</a></li>
+								<li>인프라</li>
+								<li><a href="#">CJ대한통운(건설)</a></li>
+								<li><a href="#">CJ올리브네트웍스</a></li>
+							</ul>
+							<div class="button">
+								<div class="name">계열사 바로가기</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			
+			<div class="wrap">
+                <div class="footer">
+                    <a href="">고객센터</a>
+                    <a href="">사이트맵</a>
+                    <a href="">이용약관</a>
+                    <a href=""><p>개인정보 처리 방침</p></a>
+                    <a href="">청소년 보호정책</a>
+                    <a href="">법적고지</a>
+                    <a href="">이벤트</a>
+                    <a href=""><p>다운로드</p></a>
+                    <a href="">티빙몰 바로가기</a>
+                </div>
+                
+                <div class="footer-bottom">
+                   <ul>
+                       <li>대표이사 : 허민회, 허민호<span></span></li>
+                       <li><a href="">사업자정보확인</a><span></span></li>
+                       <li>개인정보관리책임자 : 고창남<span></span></li>
+                       <li>사업자등록번호 : 106-81-51510<span></span></li>
+                       <li>통신판매신고번호 : 서초 제 000015호</li>
+                       <br>
+                       <li>본점 : 서울특별시 서초구 과천대로 870-13 (방배동)<span></span></li>
+                       <li>사업장 : 서울특별시 마포구 상암산로 66 (상암동)<span></span></li>
+                       <li>호스팅사업자 : 씨제이올리브네트웍스(주)</li>
+                       <br>
+                       <li>고객센터 : 1670-1525(평일 09시~18시)<span></span></li>
+                       <li>ENM 시청자 상담실 (편성 문의 및 시청자 의견) : 080-080-0780<span></span></li>
+                       <li>Mnet 고객센터(방송편성문의) : 1855-1631<span></span></li>
+                       <li>대표메일 : tving@cj.net<span></span></li>
+                       <li>티빙몰 문의 : tving.mall@cj.net</li>
+                   </ul>
+                </div>   
+                <div class="copyright">Copyright (C) CJ ENM All right reserved.</div>
+                
+                <div class="cjlogo">
+                    <img src="./img/footer_logo.png" alt="">
+                </div>
+			</div>
+		</footer>
+	</body>
+	<script>
+	
+		let swiper = new Swiper('.swiper-container', {
+
+		  navigation: {
+			nextEl: '.swiper-button-next',
+			prevEl: '.swiper-button-prev',
+		  },
+		});
+        
+        $(function(){
+			
+			
+			$("#search .button").on("click",function(){
+				$("#search .input").addClass("view");
+			});
+			
+			$("footer .select .button").on("click",function(){
+				const me = $(this).parent();
+				me.toggleClass("view");
+			});
+
+			
+			$(window).scroll(function(){
+				const top = $(this).scrollTop();
+				
+				if(top > 50){
+				  $("#top").addClass("view"); 
+				}else{
+				  $("#top").removeClass("view"); 
+				}
+				
+			});
+			
+		});
+	   
+
+	</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

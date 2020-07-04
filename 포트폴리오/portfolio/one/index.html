@@ -1,0 +1,469 @@
+ <!doctype html>
+<html>
+    <head>
+        <title>한마음 동물병원</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="./lib/setup.css">
+        <link rel="stylesheet" href="./lib/fullpage.css">
+        <script src="./lib/jquery.js"></script>
+        <script src="./lib/fullpage.js"></script>
+        
+        <style>
+            header{
+                position: fixed;
+                top: 0px;
+                left: 0px;
+                width: 100%;
+                padding: 5px 20px 10px;
+                z-index: 999;
+                background-color: #fffd;
+            }
+            header #logo{
+                float: left;
+            }
+            header #logo h1{
+                font-size: 0px;
+                background-position: center;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-image: url(./img/logo.png);
+                width: 220px;
+                height: 50px;
+                
+            }
+            header.view #logo h1{
+                background-image: url(./img/logo%20-%20white.png);
+            }
+
+            header #menu{
+                float: right;
+            }
+            header #menu .pc{}
+            header #menu .pc ul{}
+            header #menu .pc ul li{}
+            header #menu .pc ul li a{
+                padding: 0px 15px;
+                margin: 0px 4px;
+                line-height: 50px;
+                font-weight: bold;
+            }
+            
+            header #menu .mobile{}
+            header #menu .mobile .button{
+                width: 40px;
+                height: 40px;
+                padding: 10px;
+                line-height: 6px;
+                margin-top: 11px;
+            }
+            header #menu .mobile .button span{
+                display: inline-block;
+                width: 20px;
+                height: 3px;
+                background-color: black;
+                cursor: pointer;
+            }
+            header #menu .mobile .menuBox{
+                position: fixed;
+                background-color: #fff;
+                width: 350px;
+                height: 100%;
+                top: 0px;
+                right: 0px;
+                opacity: 0;
+                transform: translateX(100%);
+                transition: 1s;
+                
+                
+            }
+            header #menu .mobile .menuBox.view{
+                opacity: 1;
+                transform: translateX(0%);
+                
+            }
+            header #menu .mobile .menuBox img{
+                width: 50%;
+                position: absolute;
+                top: 0px;
+                right: 0px;
+                transform: translate(-50%,-50%);
+                margin-top: 40px;
+            }
+            header #menu .mobile .menuBox ul{
+                margin-top: 120px;
+                margin-left: -11px;
+                        
+            }
+            header #menu .mobile .menuBox ul li{
+                border: 1px solid #ccc;
+                margin-left: 10px;
+                border-bottom: 0px;
+                width: 350px;
+            }
+            header #menu .mobile .menuBox ul li:nth-child(11){
+                border-bottom: 1px solid #ccc;
+                
+            }
+            header #menu .mobile .menuBox ul li a{
+                font-size: 20px;
+                font-weight: bold;
+                margin-bottom: 20px;
+                color: black;
+                float: right;
+                display: inline-block;
+                margin: 10px 20px;
+                    
+                
+
+            }
+            header #menu .mobile .menuBox .close{
+                font-size: 30px;
+                float: right;
+                margin: 28px 15px 0px;
+                cursor: pointer;
+            }
+            
+            
+            main{}
+            main #fullpage{}
+            main #fullpage .section{
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            main #fullpage .section::before{
+                content: " ";
+                font-size: 0px;
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                width: 100%;
+                height: 100%;
+                background-color: #0a1b163d;
+            }
+            main #fullpage .section.p1{
+                background-image: url(./img/cat.jpg);
+            }
+            main #fullpage .section.p2{
+                background-image: url(./img/dog1.jpg);
+            }
+            main #fullpage .section.p3{
+                background-image: url(./img/background03.jpg);
+            }
+            
+            main #fullpage .section .title{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%,-50%);
+                
+            }
+            main #fullpage .section .title div,
+            main #fullpage .section .title a{
+                opacity: 0;
+                transform: translateY(100px);
+            }
+            main #fullpage .section.active .title .name{
+                animation: pageup 1s linear 0.2s 1;
+                animation-fill-mode: forwards;
+                white-space: nowrap;
+            }
+            main #fullpage .section.active .title .sub{
+                animation: pageup 0.9s linear 0.4s 1;
+                animation-fill-mode: forwards;
+            }
+            main #fullpage .section.active .title .text{
+                animation: pageup 0.8s linear 0.6s 1;
+                animation-fill-mode: forwards;
+            }
+            
+            main #fullpage .section.active .title .button{
+                animation: pageup 0.7s linear 0.8s 1;
+                animation-fill-mode: forwards;
+            }
+            
+            main #fullpage .section .title .name{
+                font-size: 70px;
+                font-weight: bold;
+                color: white;
+                
+            }
+            main #fullpage .section .title .sub{
+                font-size: 30px;
+                font-weight: bold;
+                color: white;
+                margin-top: -10px;
+                
+            }
+            main #fullpage .section .title .text{
+                font-size: 16px;
+                color: white;
+                margin-top: 10px;
+                
+            }
+            main #fullpage .section .title .button{
+                margin-top: 40px;
+                color: white;
+                line-height: 40px;
+                padding: 0px 30px;
+                border: 2px solid white;
+                display: inline-block;
+                font-size: 16px;
+                position: relative;
+                
+            }
+            main #fullpage .section .title .button::before{
+                content: " ";
+                font-size: 0px;
+                background-color: white;
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                height: 100%;
+                width: 0%;
+                z-index: -1;
+                transition: width 1s;
+            }
+            main #fullpage .section .title .button:hover::before{
+                width: 100%;
+            }
+            main #fullpage .section .title .button:hover{
+                color: black;
+                font-weight: bold;
+            }
+            
+            #fp-nav ul li a span{
+                background-color: white;
+            }
+            
+            main #fullpage .section .time{
+                width: 200px;
+                height: 4px;
+                background-color: #fff4;
+                position: absolute;
+                top: 120px;
+                right: 20px;
+                transform: translate(-50%,-50%);
+            }
+            main #fullpage .section .time .linear{
+                position: relative;
+                width: 100%;
+                height: 100%;
+            }
+            main #fullpage .section .time .linear .bar{
+                position: absolute;
+                top:0px;
+                left: 0px;
+                background-color: white;
+                width: 0%;
+                height: 100%;
+                
+            }
+            main #fullpage .section.active .time .linear .bar{
+                animation: bar 5s linear 0s 1;
+                animation-fill-mode: forwards;
+            }
+            header .fp-viewing-0{
+                background-color:transparent;
+            }
+            
+            @keyframes bar{
+                0%{
+                    width: 0%;
+                }
+                100%{
+                    width: 100%;
+                }
+            }
+            
+            @keyframes pageup{
+                0%{
+                    opacity: 0;
+                    transform: translateY(100px);
+                }
+                70%{
+                    opacity: 1;
+                }
+                100%{
+                    opacity: 1;
+                    transform: translateY(0px);
+                }
+            }
+            
+            @media only screen and (min-width:100px) and (max-width:500px){
+                
+                header{
+                    background-color: transparent;
+                    
+                }
+                header #logo h1{
+                background-image: url(./img/logo%20-%20white.png);
+                }
+                header #menu .mobile .button span{
+                    background-color: white;
+                }
+                
+                main #fullpage .section .title .name{
+                    font-size: 30px;
+                }
+                main #fullpage .section .title .sub{
+                    font-size: 15px;
+                    margin-top: 10px;
+                    white-space: nowrap;
+                }
+                main #fullpage .section .title .text{
+                    font-size: 10px;
+                    white-space: nowrap;
+                }
+                main #fullpage .section{
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: 100vh 100vh;
+                }
+                main #fullpage .section .time{
+                    width: 200px;
+                    height: 4px;
+                    background-color: #fff4;
+                    position: absolute;
+                    top: 500px;
+                    right: 44px;
+                    transform: translate(-50%,-50%);
+                }
+            }
+            
+           
+            
+        </style>
+    </head>
+    <body>
+        <header>
+            <a id="logo"href="">
+                <h1>한마음 동물병원</h1>
+            </a>
+            
+            
+            <nav id="menu">
+                <div class="pc">
+                    <ul>
+                        <li><a href="#info">병원소개</a></li>
+                        <li><a href="#subject">진료과목</a></li>
+                        <li><a href="#guide">진료안내</a></li>
+                        <li><a href="#case">진료사례</a></li>
+                        <li><a href="#center">고객센터</a></li>
+                        <li><a href="#position">병원위치</a></li>
+                    </ul>
+                </div>
+                <div class="mobile">
+                    <div class="button">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    
+                    <div class="menuBox">
+                      <img src="./img/logo.png" alt="">
+                       <div class="close">X</div>
+                        <ul>
+                            <li><a href="#info">병원소개 ></a></li><br>
+                            <li><a href="#subject">진료과목 ></a></li><br>
+                            <li><a href="#guide">진료안내 ></a></li><br>
+                            <li><a href="#case">진료사례 ></a></li><br>
+                            <li><a href="#center">고객센터 ></a></li><br>
+                            <li><a href="#position">병원위치 ></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <div id="fullpage">
+                <div class="section p1">
+                    <div class="title">
+                        <div class="name">고양이 맞춤 진료</div>
+                        <div class="sub">고양이 진료실 / 고양이 방 별도 운영</div>
+                        <div class="text">소중한 반려묘에의 건강을 전문의의 치료를 통해 치료하세요</div>
+                        <a class="button">Lead More</a>
+                    </div>
+                    <div class="time">
+                        <div class="linear">
+                            <div class="bar"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section p2">
+                    <div class="title">
+                        <div class="name">슬개골 / 외상관련 수술전문 병원</div>
+                        <div class="sub">외과 수술 전문 · 최첨단 의료시설 · 끊임 없는 연구</div>
+                        <div class="text">소중한 반려묘에의 건강을 전문의의 치료를 통해 치료하세요</div>
+                        <a class="button">Lead More</a>
+                    </div>
+                    <div class="time">
+                        <div class="linear">
+                            <div class="bar"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section p3">
+                    <div class="title">
+                        <div class="name">미용 & 호텔</div>
+                        <div class="sub">애견/고양이 미용,애견/고양이 호텔이용</div>
+                        <a class="button">Lead More</a>
+                    </div>
+                    <div class="time">
+                        <div class="linear">
+                            <div class="bar"></div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </main>
+        <footer></footer>
+    </body>
+    <script>
+		
+		let time;
+		let arrow = "down";
+        
+		new fullpage('#fullpage', {
+			//options here
+			css3: true,
+			autoScrolling:true,
+			scrollHorizontally: true,
+			navigation: true,
+			afterLoad: function(origin, destination, direction){
+                
+                console.log(destination.index);
+                
+                if(destination.isFirst == true){
+                    arrow = "down";
+                }else if(destination.isLast == true){
+                    arrow = "up"  ;
+                }
+                
+				clearInterval(time);
+				time = setInterval(function(){
+                    
+                    if(arrow == "down"){
+                        fullpage_api.moveSectionDown();
+                    }else if(arrow == "up"){
+                        fullpage_api.moveSectionUp();
+                    }   
+				},5000);
+			} 
+		});
+        
+        $(function(){
+            $("#menu .button").on("click",function(){
+                $("#menu .menuBox").addClass("view");
+            });
+            
+            $("#menu .menuBox .close").on("click",function(){
+                $("#menu .menuBox").removeClass("view");
+            });
+	   });
+
+	</script>
+</html>

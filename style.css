@@ -128,7 +128,7 @@ p{
 
 .navbar__toggle-btn{
     position: absolute;
-    top: 22px;
+    top: 10px;
     right: 32px;
     font-size: 24px;
     color: white;
@@ -282,7 +282,7 @@ p{
 }
 
 .list__btn{
-    border: 1px solid royalblue;
+    border: 1px solid gray;
     border-radius: var(--size-border-radius);
     font-size: var(--font-regular);
     padding: 8px 48px;

@@ -1,0 +1,977 @@
+<!doctype html>
+<html>
+    <head>
+    <title>IKEA Korea - IKEA</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./lib/setup.css">
+    <link rel="stylesheet" href="./lib/swiper.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <script src="./lib/swiper.js"></script>  
+    <script src="./lib/jquery.js"></script>
+    <style>
+
+        
+        header{
+            padding: 10px;
+        }
+        header #logo{
+            float: left;
+            padding: 10px;
+        }
+        header #logo img{}
+        
+        header #menu{
+            float: left;
+            padding: 18px;
+            font-family: 'Roboto', sans-serif;
+        }
+        header #menu .pc #main-menu{}
+        
+        header #menu .pc #main-menu li{
+            margin: 0px 10px; 
+            position: relative;
+        }
+        header #menu .pc #main-menu li a{
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        header #menu .pc #sub-menu{
+            position: absolute;
+            background-color: white;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.15s ease-in;
+            width: 350px;
+            margin-top: 20px;
+            text-align: left;
+            box-shadow: 2px 3px 5px black;
+            
+        }
+        header #menu .pc #sub-menu h1{
+            font-size: 24px;
+            text-align: left;
+            padding: 10px 25px;
+        }
+        
+        header #menu .pc #sub-menu li{
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        header #menu .pc #sub-menu li a{
+            margin: 10px 20px;
+            color: #0058a3;
+            font-family: 'Roboto', sans-serif;
+            font-weight: bold;
+        }
+        header #menu .pc #sub-menu li .plus{
+            color: black;
+        }
+        header #menu .pc #sub-menu li a:hover{
+            text-decoration: underline;
+        }
+        
+        header #menu #main-menu > li:hover #sub-menu{
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        header .mobile{
+            float: left;
+            margin-top: 17px;
+            margin-left: -45px;
+        }
+
+        header .button{
+            width: 40px;
+            height: 40px;
+            line-height: 8px;
+            margin-top: 3px;
+            float: left;
+            cursor: pointer;
+            
+        }
+        header .button span{
+            background-color: black;
+            width: 20px;
+            height: 3px;
+            display: inline-block;
+        }
+        
+        header .menubox{
+            position: fixed;
+            background-color: #0058a3;
+            width: 80%;
+            height: 100%;
+            top: 0px;
+            left: 0px;
+            opacity: 1;
+            transform: translateX(-100%);
+            transition: 1s;
+            z-index: 999;
+        }
+        header .menubox.view{
+            opacity: 1;
+            transform: translateX(0%);
+            
+        }
+        header .menubox img{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            border: 1px solid #333;
+            border-radius: 100%;
+            background-color: #333;
+        }
+        header .menubox ul{
+            margin-top: 70px;
+            
+        }
+        header .menubox ul li{
+            border-bottom: 1px solid black;
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: left;
+            background-color: white;   
+        }
+        header .menubox p{
+            margin-top: 10px;
+            text-align: left;
+        }
+        header .menubox p a{
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            margin-left: 15px;
+            border-bottom: 1px solid #0058a3;
+        }
+        header .menubox p a:hover{
+            border-bottom: 1px solid white;
+        }
+        
+        header .btn{
+            margin-top: 15px;
+            float: right;
+            
+        }
+        header .btn img{
+            width: 25px;
+            height: 25px;
+            margin: 0px 5px;
+
+        }
+        header .btn img:hover{
+            transform: scale(1.3);
+        }
+        
+        
+        main{}
+        main .search{
+            background-color: #eeea;
+            width: 100%;
+            border-radius: 30px;
+            padding: 10px;
+            text-align: left;
+            font-size: 14px;
+        }
+        main .searchbox{
+            width: 100%;
+            height: 400px;
+            background-color: white;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            transform: translateY(-100%);
+        }
+        main .searchbox.view{
+            transform: translateY(0%);
+        }
+        main .search:hover{
+            background-color: #eee;
+        }
+        main .search img{
+            margin: 0px 5px;
+        }
+        
+        main .searchbox{
+            width: 100%;
+            height: 500px;
+            background-color: white;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            transform: translateY(-100%);
+        }
+        main .searchbox.view{
+            transform: translateY(0%);
+        }
+        main .searchbox.view::before{
+            content: " ";
+            background-color: #0a1b163d;
+            position: absolute;
+            top: 500px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            
+        }
+        
+        main .searchbox p{
+            font-size: 20px;
+            position: absolute;
+            top: 13%;
+            left: 10%;
+            cursor: pointer;
+        }
+        main .searchbox .box{
+            border: 0px;
+            width: 63%;
+            padding: 20px 0px;
+            border-bottom: 2px solid #407ab1;
+            margin-top: 50px;
+            font-size: 17px;
+        }
+        
+        main .searchbox .history{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            width: 63%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        main .searchbox .history .best{
+            text-align: left;
+        }
+        
+        main .searchbox .history .bests{
+            text-align: left;
+        }
+        
+        main .searchbox .history ul h1{
+            padding: 20px 0px;
+            font-size: 12px;
+            color: gray;
+        }
+        main .searchbox .history ul li{
+            display: block;
+            margin: 20px 0px;
+            font-weight: bold;
+        }
+        main .searchbox .history ul li:hover{
+            text-decoration: underline;
+        }
+        
+        
+        main .main{
+            margin-top: 25px;
+        }
+        main .main img{
+            width: 100%;
+        }
+        main .box{}
+        main .box .name{
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 60px;
+        }
+        main .box .button{
+            border: 1px solid #407ab1;
+            padding: 10px 27px;
+            margin-top: 20px;
+            color: #407ab1;
+            font-weight: bold;
+            letter-spacing: -1px;
+            transition: background-color 0.5s;
+        }
+        main .box .button:hover{
+            background-color: #407ab1;
+            color: white;
+        }
+        
+        main .list{
+            margin-top: 50px;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 50px;
+
+        }
+        main .list ul{}
+        main .list ul li{}
+        
+        main .list ul li img{
+            width: 95%;
+        }
+        
+        main .list ul li .title{}
+        main .list ul li .title .pay{
+            font-size: 12px;
+            text-align: left;
+            margin-left: 14px;
+            margin-top: 10px;
+        }
+        main .list ul li .title .pay a{
+            font-size: 12px;
+            font-weight: bold;
+            border-bottom: 1px solid white;
+        }
+        main .list ul li .title .pay a:hover{
+            border-bottom: 1px solid #333;
+        }
+        main .list ul li .title .pay span{
+            font-size: 12px;
+            text-decoration: line-through;
+        }
+        main .list ul li .title .name{
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: -1px;
+            margin-top: 15px;
+        }
+        main .list ul li .title .sub{
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: left;
+            margin-left: 14px;
+        }
+        main .list ul li .title .button{
+            border: 1px solid #407ab1;
+            padding: 10px 27px;
+            margin-top: 25px;
+            color: #407ab1;
+            font-weight: bold;
+            letter-spacing: -1px;
+            margin-bottom: 60px; 
+            transition: background-color 0.5s;
+        }
+        main .list ul li .title .button:hover{
+            background-color: #407ab1;
+            color: white;
+        }
+        
+        main .mname{
+            font-weight: bold;
+            font-size: 24px;
+            margin-bottom: 80px;
+        }
+        main .product{
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 50px;
+        }
+        main .product ul{}
+        main .product ul li{}
+        
+        main .product ul li img{
+            width: 210px;
+            height: 210px;
+            transition: transform 1s;
+        }
+        main .product ul li img:hover{
+            transform: scale(1.03);
+        }
+        main .product ul li .title{
+            text-align: left;
+            margin-top: 15px;
+           
+        }
+        main .product ul li .title .name{
+            font-weight: bold;
+            font-size: 16px;
+        }
+        main .product ul li .title .sub{}
+        main .product ul li .title .pay{
+            font-weight: bold;
+            font-size: 22px;
+            margin-bottom: 100px;
+        }
+        
+        main .mspace{}
+        main .mspace .name{
+            font-size: 24px;
+            font-weight: bold;
+        }
+        main .mspace .sub{
+            margin-top: 30px;
+            font-size: 16px;
+        }
+        
+        main .space{
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 80px;
+        }
+        
+        main .space img{
+            margin-top: 30px;
+            width: 80%;
+            height: 80%;
+            
+        }
+        
+        main .space .title{}
+        
+        main .space .title .name{
+            font-size: 12px;
+            text-align: left;
+            margin-left: 120px;
+        }
+        main .space .title .name span{
+            color: red;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        main .space .title .name span2{
+            font-weight: bold;
+            font-size: 12px;
+        }
+        main .space .title .name span3{
+            font-weight: bold;
+            font-size: 12px;
+        }
+        
+        main .space .title .sub{
+            font-size: 16px;
+            margin-top: 15px;
+            text-align: left;
+            margin-left: 90px;
+        }
+        main .space .title .button{
+            border: 1px solid #407ab1;
+            padding: 10px 20px;
+            background-color: #407ab1;
+            color: white;
+            border-radius: 4px;
+            margin-top: 20px;
+            margin-bottom: 100px;
+            transition: background-color 0.5s;
+        }
+        main .space .title .button:hover{
+            background-color: #2b557d;
+        }
+        
+        main .mikea{
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+        
+        main .ikea{}
+        
+        main .ikea ul{}
+        main .ikea ul li{}
+        main .ikea ul li img{
+            width: 100%;
+            padding: 10px;
+        }
+        main .ikea ul li .button{
+            border: 1px solid #407ab1;
+            color: #407ab1;
+            padding: 10px 20px;
+            margin-top: 20px;
+            margin-bottom: 50px;
+            transition: background-color 0.5s;
+        }
+        main .ikea ul li .button:hover{
+            background-color: #407ab1;
+            color: white;
+        }
+        
+        footer{
+            background-color: #0058a3;
+        }
+        footer .language{
+            
+        }
+        footer .language ul{
+            text-align: left;
+            margin-top: 20px;
+            border-bottom: 1px solid #ccca;
+        }
+        footer .language ul li{}
+        footer .language ul li a{
+            margin: 12px 15px;
+            color: white;
+            font-size: 16px;
+        }
+        footer .language ul li .fr{
+            font-weight: bold;
+        }
+        footer .language img{
+            width: 50px;
+            height: 50px;
+            margin-bottom: 20px;
+        }
+        
+        footer .footer{
+            text-align: left;
+        }
+        footer .footer ul{
+            margin-top: 50px;
+        }
+        footer .footer ul li{
+            color: white;
+            font-weight: bold;
+            margin-top: 7px;
+            
+        }
+        footer .footer ul img{
+            width: 35px;
+            height: 35px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        footer .footer ul p{
+            padding: 5px;
+            color: white;
+            font-weight: bold;
+        }
+        
+        footer .year{
+            color: white;
+            margin-top: 30px;
+            font-size: 12px;
+        }
+        
+        footer .three{
+           
+        }
+        footer .three ul{
+            margin-top: 10px;
+        }
+        footer .three ul li{
+            font-size: 12px;
+        }
+        footer .three ul li a{
+            color: white;
+            font-size: 12px;
+        }
+        footer .three ul li span{
+            border-right: 1px solid white;
+            margin: 0px 10px;
+        }
+        
+        footer .last{
+            margin-top: 30px;
+            color: white;
+        }
+        footer .last p{
+            padding: 2px;
+            font-size: 12px;
+        }
+        footer .last p span{
+            border: 1px solid white;
+            background-color: white;
+            color: black;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        footer .last p span2{
+            border-bottom: 1px solid white;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        footer .last p span2:hover{
+            color: #111;
+            border-bottom: 1px solid #111;
+        }
+        
+        
+        
+        @media only screen and (min-width:100px)
+            and (max-width:600px){
+                main .space .title .sub{
+                    margin-left: 20px;
+                }
+                
+                footer .language{
+                    padding: 0px 20px;    
+                }
+                
+                footer .footer{
+                    padding: 0px 20px;
+                }
+        }
+        </style>    
+    </head>
+    
+    <body>
+        <header>
+           <div class="wrap">
+                <a id="logo" href="">
+                    <img src="./img/ikea-logo.f88b07ceb5a8c356b7a0fdcc9a563d63.svg" alt="">
+                </a>
+                
+                <nav id="menu">
+                   <div class="pc">
+                        <ul id="main-menu">
+                            <li><a href="#">모든제품 ∨</a>
+                                <ul id="sub-menu">
+                                    <h1>모든 제품</h1>
+                                    <li><a href="#">가구 ></a></li><br>
+                                    <li><a href="#">소파&암체어 ></a></li><br>
+                                    <li><a href="#">침대&매트리스 ></a></li><br>
+                                    <li><a href="#">수납&정리 ></a></li><br>
+                                    <li><a href="#">어린이IKEA ></a></li><br>
+                                    <li><a href="#">텍스타일 ></a></li><br>
+                                    <li><a href="#">러그/매트/조립마루 ></a></li><br>
+                                    <li><a href="#">주방가구 ></a></li><br>
+                                    <li><a href="#">주방용품 ></a></li><br>
+                                    <li><a href="#">조명 ></a></li><br>
+                                    <li><a href="#">가전제품 ></a></li><br>
+                                    <li><a href="#">욕실 ></a></li><br>
+                                    <li><a class="plus" href="#">+ 더보기</a></li><br>
+                                </ul>
+                            </li>
+                            <li><a href="#">디지털 쇼룸 ∨</a>
+                                <ul id="sub-menu">
+                                    <h1>디지털 쇼룸</h1>
+                                    <li><a href="#">침실</a></li><br>
+                                    <li><a href="#">거실</a></li><br>
+                                    <li><a href="#">주방</a></li><br>
+                                    <li><a href="#">다이닝</a></li><br>
+                                    <li><a href="#">어린이IKEA ></a></li><br>
+                                    <li><a href="#">욕실</a></li><br>
+                                    <li><a href="#">홈오피스</a></li><br>
+                                    <li><a href="#">현관</a></li><br>
+                                    <li><a href="#">아웃도어</a></li><br>
+                                </ul>
+                            </li>
+                            <li><a href="#">아이디어</a></li>
+                            <li><a href="#">매장 안내</a></li>
+                            <li><a href="#">이달의 혜택 ∨</a>
+                                <ul id="sub-menu">
+                                    <h1>이달의 혜택</h1>
+                                    <li><a href="#">집에서 행복하게</a></li><br>
+                                    <li><a href="#">건강한 지구, 집에서 함께 시작해요</a></li><br>
+                                    <li><a href="#">봄맞이 식물기획전</a></li><br>
+                                    <li><a href="#">더 낮은 새로운 가격</a></li><br>
+                                    <li><a href="#">헴네스 침실 및 욕실 20% 할인 ></a></li><br>
+                                    <li><a href="#">평일 특가</a></li><br>
+                                    <li><a href="#">마지막 찬스</a></li><br>
+                                    <li><a href="#">IKEA Family 특별가</a></li><br>
+                                    <li><a href="#">홈퍼니싱 레시피</a></li><br>
+                                    <li><a href="#">신제품</a></li><br>
+                                    <li><a href="#">리뷰쓰고 쿠폰받고</a></li><br>
+                                </ul>
+                            </li>
+                            <li><a href="#">더 낮은 새로운 가격</a></li>
+                        </ul>
+                    </div>
+                </nav>    
+                    
+                <div class="mobile">
+                    <div class="button">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                </div>
+                
+                    <div class="menubox">
+                        <img src="./img/clear-white-18dp.svg" alt="">    
+                        <ul>
+                            <li>모든 제품 ></li><br>
+                            <li>디지털 쇼룸 ></li><br>
+                            <li>아이디어</li><br>
+                            <li>매장안내</li><br>
+                            <li>이달의 혜택 ></li><br>
+                            <li>더 낮은 새로운 가격</li><br>
+                        </ul>
+                            <p><a href="#">IKEA Family</a></p><br>
+                            <p><a href="#">고객지원</a></p><br>
+                            <p><a href="#">배송조회</a></p><br>
+                            <p><a href="#">신제품</a></p><br>
+                            <p><a href="#">언어 선택 ↓</a></p>
+                    </div>    
+                </div>
+
+                <div class="btn">
+                    <img src="./img/one.svg" alt="">
+                    <img src="./img/list.svg" alt="">
+                    <img src="./img/shoping.svg" alt="">
+                </div>
+            </div>    
+        </header>
+        <main>
+            <div class="wrap">
+                <div class="search"><img src="./img/search.svg" alt="">검색어 입력</div>
+                   
+                    <div class="searchbox">
+                        <p>X</p>
+                        <input type="text" class="box" value="검색어 입력">
+                        <div class="history">
+                            <ul class="best">
+                                <h1>인기 검색어</h1>
+                                <li>책상</li>
+                                <li>의자</li>
+                                <li>선반</li>
+                                <li>테이블</li>
+                                <li>수납장</li>
+                                <li>서랍장</li>
+                            </ul>
+                            <ul class="bests">
+                                <h1>인기 제품</h1>
+                                <li>책상</li>
+                                <li>의자</li>
+                                <li>선반</li>
+                                <li>테이블</li>
+                                <li>수납장</li>
+                                <li>서랍장</li>
+                            </ul>
+                        </div>
+                        
+                    </div>   
+            </div>   
+                
+            <div class="wrap">
+                <div class="main">
+                    <img src="./img/3.webp" alt="">
+                </div>
+
+                <div class="box">
+                    <div class="name">지구를 위한 지속가능한 일상, 돈을 많이 들이지 않고도 얼마든지 가능해요!</div>
+                    <a class="button" href="#">챌린지 알아보기 ＞</a>
+                </div>
+            </div>    
+                
+            <div class="wrap">
+                <div class="list grid2">
+                    <ul>
+                        <li>
+                            <img src="./img/list1.webp" alt="">
+                            <div class="title">
+                                <div class="pay">더 낮은 새로운 가격 <a href="">SPISIG 스피시그</a> 주방놀이세트+커튼 ￦ 49,900 <span>￦ 69,900</span></div>
+                                <div class="name">더 낮은 새로운 가격</div>
+                                <div class="sub">품질은 그대로 가격은 아래로. 모두를 위한 IKEA의 합리적인 솔루션. 더 많은 제품이 새로운 가격으로 찾아왔어요! 200여 개 이상의 제품을 더 낮은 가격으로 만나보세요.
+                                </div>
+                                <a class="button" href="#">자세히보기 ＞</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <img src="./img/list2.webp" alt="">
+                            <div class="title">
+                                <div class="pay"><a href="">MALM 말름</a> 높은침대프레임+수납상자2 ￦ 359,000</div>
+                                <div class="name">IKEA 플래닝 스튜디오 천호</div>
+                                <div class="sub">IKEA 플래닝 스튜디오 천호가 4월 30일에 오픈합니다! 원하는 시간에 예약하고 스튜디오를 방문해 당신에게 맞는 침실을 홈퍼니싱 컨설턴트와 만들어보세요.
+                                </div>
+                                <a class="button" href="#">자세히보기 ＞</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>  
+            
+            <div class="wrap">
+               <div class="mname">이달의 인기 제품</div>
+                <div class="product grid4">
+                    <ul>
+                        <li>
+                            <img src="./img/cup.webp" alt="">
+                            <div class="title">
+                                <div class="name">DINERA 디네라</div>
+                                <div class="sub">머그컵, 30cl</div>
+                                <div class="pay">￦ 2,900</div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <img src="./img/trensum.webp" alt="">
+                            <div class="title">
+                                <div class="name">TRENSUM 트렌숨</div>
+                                <div class="sub">거울</div>
+                                <div class="pay">￦ 5,900</div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <img src="./img/jonaxel.webp" alt="">
+                            <div class="title">
+                                <div class="name">JONAXEL 요낙셀</div>
+                                <div class="sub">프레임+철바구니,50x51x70 cm</div>
+                                <div class="pay">￦ 42,000</div>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <img src="./img/svartskog.webp" alt="">
+                            <div class="title">
+                                <div class="name">SVARTSKOG</div>
+                                <div class="sub">침대협탁,50x44 cm</div>
+                                <div class="pay">￦ 99,900</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="wrap">
+                <div class="mspace">
+                    <div class="name">오늘의 공간</div>
+                    <div class="sub">당신의 공간을 아름답게 꾸미기 위한 영감을 드립니다</div>
+                </div>
+                <div class="space">
+                    <img src="./img/space.webp" alt="">
+                    <div class="title">
+                        <div class="name"><span>NEW</span> <span2>SLÄKT 슬렉트</span2> 길이조절침대+갈빗살 <span3>￦ 139,900</span3></div>
+                        <div class="sub">방을 함께 쓰는 아이들에게도 놀이와 나만의 시간을 위한 전용 공간이 필요해요. 아이들은 각자의 취향에 맞게 가구를 꾸미고 싶어 할 거예요.</div>
+                        <a class="button" href="#">더 많은 공간 보러가기 ＞</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="wrap">
+                <div class="mikea">IKEA 주요정보</div>
+                <div class="ikea grid3">
+                    <ul>
+                        <li>
+                            <img src="./img/ikea1.webp" alt="">
+                            <a class="button" href="#">2020 카탈로그 ＞</a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <img src="./img/ikea2.webp" alt="">
+                            <a class="button" href="#">IKEA FOOD ＞</a>
+                        </li>
+                    </ul>    
+                    <ul>
+                        <li>
+                            <img src="./img/ikea3.webp" alt="">
+                            <a class="button" href="#">IKEA Family ＞</a>
+                        </li>
+                    </ul>
+                    <ul>
+                       <li>
+                            <img src="./img/ikea4.webp" alt="">
+                            <a class="button" href="#">고객지원센터 ＞</a>
+                        </li> 
+                    </ul>  
+                    <ul>
+                        <li>
+                            <img src="./img/ikea5.webp" alt="">
+                            <a class="button" href="#">제품리콜 ＞</a>
+                        </li>
+                    </ul>   
+                    <ul>
+                       <li>
+                            <img src="./img/ikea6.webp" alt="">
+                            <a class="button" href="#">안전사고 예방 방법 ＞</a>
+                        </li> 
+                    </ul>   
+                </div>
+            </div>
+            
+        </main>
+        <footer>
+            <div class="language">
+               <div class="wrap">
+                    <ul>
+                        <img src="./img/language.svg" alt="">
+                        <li><a class="fr" href="#">언어</a></li>
+                        <li><a href="#">English</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="wrap">
+                <div class="footer grid4">
+                    <ul>
+                        <img src="./img/error.svg" alt="">
+                        <li>고객지원</li>
+                        <p>자주 묻는 질문</p>
+                        <p>문의하기</p>
+                        <p>배송조회</p>
+                        <p>반품정책</p>
+                        <p>품질보증</p>
+                        <p>제품지콜</p>
+                        <p>제품 구매 안내</p>
+                        <p>피드백</p>
+                    </ul>
+                    <ul>
+                        <img src="./img/payment.svg" alt="">
+                        <li>쇼핑하기</li>
+                        <p>쇼핑하기</p>
+                        <p>전화 주문</p>
+                        <p>IKEA Family</p>
+                        <p>IKEA 모바일 앱</p>
+                        <p>온라인 플래닝</p>
+                        <p>IKEA 카탈로그</p>
+                        <p>결제 옵션</p>
+                        <p>제품 재고 확인</p>
+                    </ul>
+                    <ul>
+                        <img src="./img/import.svg" alt="">
+                        <li>서비스</li>
+                        <p>IKEA 서비스</p>
+                        <p>배송 서비스</p>
+                        <p>조립 서비스</p>
+                        <p>홈퍼니싱 컨설팅 서비스</p>
+                        <p>주방 플래닝 서비스</p>
+                        <p>전화 플래닝 서비스</p>
+                    </ul>
+                    <ul>
+                        <img src="./img/storefront.svg" alt="">
+                        <li>IKEA 이야기</li>
+                        <p>기업 소개</p>
+                        <p>데모크래틱 디자인</p>
+                        <p>지속가능한 생활</p>
+                        <p>뉴스</p>
+                        <p>채용정보</p>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="year">© Inter IKEA Systems B.V 1999-2020</div>
+            
+            <div class="three">
+                <ul>
+                    <li><a href="#">개인정보처리방침</a><span></span></li>
+                    <li><a href="#">웹사이트 이용약관</a><span></span></li>
+                    <li><a href="#">Responsible disclosure</a></li>
+                </ul>
+            </div>
+            
+            <div class="last">
+                <p>IKEA 코리아</p>
+                <p>주소 : (우) 14352 경기도 광명시 일직로 17 IKEA광명점</p>
+                <p>사업자 등록번호 : 106-86-82871 <span>사업자정보확인 ></span></p>
+                <p>대표자 : 프레드리크 요한손</p>
+                <p>통신판매업 신고 : 2018-경기광명-0209</p>
+                <p>TEL : <span2>1670-4532</span2></p>
+            </div>
+            <br>
+            <br>
+        </footer>
+    </body>
+     <script>
+        let swiper = new Swiper('.swiper-container', {
+          pagination: {
+          },
+        });
+        
+         
+        $(function(){
+            $("header .button").on("click",function(){
+                $("header .menubox").addClass("view");
+            });
+            $("header .menubox img").on("click",function(){
+                $("header .menubox").removeClass("view");
+            });
+            
+            $(".search").on("click",function(){
+                $(".searchbox").addClass("view");
+            });
+            $(".searchbox p").on("click",function(){
+                $(".searchbox").removeClass("view");
+            });
+            
+	   });
+ 
+    </script>
+</html>

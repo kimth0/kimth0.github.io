@@ -1,0 +1,1014 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Portfolio</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width-device-width">
+        
+        <link rel="stylesheet" href="./lib/setup.css">
+        <link rel="stylesheet" href="./lib/fullpage.css">
+        <link rel="stylesheet" href="./lib/swiper.css">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+        <script src="./lib/jquery.js"></script>
+        <script src="./lib/fullpage.js"></script>
+        <script src="./lib/swiper.js"></script>
+        <style>
+            *{
+                font-family: 'Noto Sans', sans-serif;
+            }
+            header{
+                position: fixed;
+                width: 100%;
+                height: 70px;
+                bottom: 0px;
+                left: 0px;
+                background-color: black;
+                transition: opacity 0.5s;
+                z-index: 99; 
+            }
+            main #logo{
+                position: absolute;
+                top: 10px;
+                left: 20px;
+            }
+            header #logo img{}
+            
+            header #menu{}
+
+            header #menu .pc{
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                background-color: black;
+                color: white;
+            }
+            header #menu .pc ul{
+                
+                width: 100%;
+            }
+            header #menu .pc ul li{
+            }
+            header #menu .pc ul li a{
+                color: white;
+                font-size: 22px;
+                margin: 20px 50px;
+                opacity: 0.3;
+            }
+            header #menu .pc ul li a:hover{
+                opacity: 1;
+                transition: 1s;
+            }
+            header #menu .pc ul li a.view{
+                transition: 1s;
+                opacity: 1;
+            }
+
+            header .button{
+                width: 45px;
+                height: 45px;
+                line-height: 10px;
+                float: right;
+                position: absolute;
+                top: 20px;
+                right: 120px;
+                padding: 10px;
+                cursor: pointer;
+            }
+            header .button span{
+                width: 30px;
+                height: 2px;
+                background-color: gray;
+                display: inline-block;
+            }
+            header .button:hover span:nth-child(1){
+                transform: rotate(10deg);
+                transition: 0.5s easy-in-out;
+            }
+            header .button:hover span:nth-child(3){
+                transform: rotate(-10deg);
+                transition: 0.5s easy-in-out;
+            }
+
+            
+            header .menubox{
+                position: fixed;
+                background-color: #333;
+                width: 100%;
+                height: 100%;
+                top: 0px;
+                left: 0px;
+                opacity: 1;
+                transform: translateY(-100%);
+                transition: 1s;
+            }
+            header .menubox.view{
+                opacity: 1;
+                transform: translateY(0%);
+            }
+            header .menubox img{
+                position: absolute;
+                width: 50px;
+                height: 50px;
+                top: 20px;
+                right: 120px;
+                cursor: pointer;
+            }
+            header .menubox ul{
+                margin-top: 260px;
+            }
+            header .menubox ul li{
+                padding: 20px;
+            }
+            header .menubox ul li a{
+                color: white;
+                font-size: 40px;
+                border-bottom: 1px solid #333;
+            }
+            header .menubox ul li a:hover{
+                transform: scale(1.2);
+                color: gray;
+            }
+            
+            
+            main{}
+            main #fullpage{}
+            main #fullpage .p1{
+                background-color: black;
+            }
+            main #fullpage .p1 h1{
+                font-size: 70px;
+                font-weight: 700;
+                color: white;
+                position: absolute;
+                bottom: 400px;
+                left: 120px;
+                opacity: 0;
+            }
+            main #fullpage .p1.active h1{
+                animation: pageup2 0.5s linear 0.3s 1;
+                animation-fill-mode: forwards;
+            }
+            main #fullpage .p1 p{
+                font-size: 18px;
+                font-weight: 400;
+                position: absolute;
+                bottom: 360px;
+                left: 125px;
+                color: #aaa;
+                opacity: 0;
+            }
+            main #fullpage .p1.active p{
+                animation: pageup2 0.7s linear 0.6s 1;
+                animation-fill-mode: forwards;
+            }
+            
+            main #fullpage .p1 .mouse{
+                position: absolute;
+                bottom: 15%;
+                left: 50%;
+                transform: translate(-50%);
+                animation: mouse 1s infinite;
+                animation-direction: alternate-reverse;
+                animation-fill-mode: forwards; 
+            }
+            
+            main #fullpage .p1 .mouse img{
+                width: 45px;
+                height: 45px;
+            }
+            
+            
+
+            main #fullpage .p2{
+                color: black;
+            }
+            main #fullpage .p2 h2{
+                font-size: 40px;
+                color: black;
+                position: absolute;
+                top: 50px;
+                left: 100px;
+            }
+            main #fullpage .p2 .aslide{
+                height: 100vh;
+            }
+            main #fullpage .p2 .aslide .swiper-wrapper{}
+            main #fullpage .p2 .aslide .swiper-wrapper{}
+            main #fullpage .p2 .aslide .swiper-wrapper .name{
+                position: absolute;
+                top: 300px;
+                left: 100px;
+                text-align: left;
+                
+            }
+            main #fullpage .p2.active .aslide .swiper-wrapper .name p{
+                animation: pageup2 0.5s linear 0.3s 1;
+                animation-fill-mode: forwards;
+            }
+            main #fullpage .p2.active .aslide .swiper-wrapper .name h1{
+                animation: pageup2 0.9s linear 0.3s 1;
+                animation-fill-mode: forwards;
+
+            }
+            
+            main #fullpage .p2 .aslide .swiper-wrapper .name p{
+                font-size: 20px;
+                opacity: 0;
+            } 
+            main #fullpage .p2 .aslide .swiper-wrapper .name h1{
+                font-size: 60px;
+                letter-spacing: 6px;
+                opacity: 0;
+            } 
+            
+            main #fullpage .p2 .aslide .swiper-wrapper .title{
+                position: absolute;
+                top: 650px;
+                left: 100px;
+                text-align: left;
+            }
+            main #fullpage .p2 .aslide .swiper-wrapper .title p{
+                font-size: 16px;
+
+            }
+            main #fullpage .p2 .aslide .swiper-wrapper .title p1{
+                font-size: 22px;
+                font-weight: bold;
+            }
+            
+            main #fullpage .p2 .aslide .swiper-wrapper .title h1{
+                font-size: 22px;
+                font-weight: bold;
+            }
+            main #fullpage .p2 .aslide .swiper-wrapper .title ul{}    
+            main #fullpage .p2 .aslide .swiper-wrapper .title ul li{
+                
+            }    
+            main #fullpage .p2 .aslide .swiper-wrapper .title ul li img{
+                width: 40px;
+                height: 40px;
+                border-right: 15px;
+            }    
+            
+            
+            main #fullpage .p3{
+                background-color: black;
+            }
+
+            main #fullpage .p3 h1{
+                font-size: 40px;
+                color: white;
+                text-align: left;
+                margin-left: 30px;
+                margin-bottom: 50px;
+            }
+            
+            main #fullpage .p3 .taplist{}
+            main #fullpage .p3 .taplist .menu{
+                text-align: left;
+                margin-bottom: 30px;
+            }
+            main #fullpage .p3 .taplist .menu ul{
+            }
+            main #fullpage .p3 .taplist .menu ul li{
+                color: white;
+                font-size: 20px;
+                font-weight: bold;
+                margin-left: 38px;
+                cursor: pointer;
+                opacity: 0.5;
+            }
+            main #fullpage .p3 .taplist .menu ul li.view{
+                opacity: 1;
+                transform: scale(1.3);
+                transition: 0.5s;
+            }
+
+            main #fullpage .p3 .taplist .tapbox{
+                position: relative;
+            }
+            main #fullpage .p3 .taplist .tapbox .tap{
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                opacity: 0;
+                z-index: 1;
+            }
+            main #fullpage .p3 .taplist .tapbox .tap.view{
+                width: 100%;
+                height: 100vh;
+                z-index: 9;
+                opacity: 1;
+            }
+            main #fullpage .p3 .taplist .tapbox .tap ul{
+                margin: 10px 20px;
+                margin-bottom: 50px;
+
+            }
+            main #fullpage .p3 .taplist .tapbox .tap ul li{
+                background-color: white;
+                height: 250px;
+                list-style: none;
+                border: 1px solid white;
+                position: relative;
+                border-radius: 5px;
+                margin: 10px;
+    
+            }
+            main #fullpage .p3 .taplist .tapbox .tap ul li a{}
+            main #fullpage .p3 .taplist .tapbox .tap ul li a img{
+                margin-top: 109.5px;
+            }
+            main #fullpage .p3 .taplist .tapbox .tap ul li a .title{
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                width: 100%;
+                height: 100%;
+                background-color: #444;
+                opacity: 0;
+                transition: opacity 0s;
+                border-radius: 5px;
+            }
+            
+            main #fullpage .p3 .taplist .tapbox .tap ul li:hover a .title{
+                opacity: 1;
+                border: 3px double gray;
+            }
+            main #fullpage .p3 .taplist .tapbox .tap.view ul li a .title .name{
+                position: absolute;
+                top: 30%;
+                width: 100%;
+                text-align: center;
+                color:white;
+                font-size: 30px;
+                font-weight: bold;
+                opacity: 0;
+                transition: opacity 1s;
+
+            }
+            main #fullpage .p3 .taplist .tapbox .tap.view ul li a .title .plus{
+                position: absolute;
+                top: 50%;
+                width: 100%;
+                text-align: center;
+                color:white;
+                font-size: 60px;
+                opacity: 0;
+                transition: opacity 1.5s;
+            }
+
+            main #fullpage .p3 .taplist .tapbox .tap.view ul li:hover a .title .name,
+            main #fullpage .p3 .taplist .tapbox .tap.view ul li:hover a .title .plus{
+                opacity: 1;
+            }
+            
+            
+            main #fullpage .p4{
+            }
+            main #fullpage .p4 h2{
+                font-size: 40px;
+                color: black;
+                position: absolute;
+                top: 50px;
+                left: 100px;
+            }
+
+            main #fullpage .p4 .cslide{
+                height: 100vh;
+            }
+            
+            main #fullpage .p4 .cslide .swiper-slide{
+                
+            }
+            main #fullpage .p4 .cslide .swiper-slide .circle{
+                width: 180px;
+                height: 180px;
+                border-radius: 100%;
+                background-color: black;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50% , -50%);
+                z-index: 1;
+            }
+            main #fullpage .p4 .cslide .swiper-slide .circle span{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50% , -50%);
+                transform-origin: center;
+                width: 180px;
+                height: 6px;
+                background-color: white;
+                z-index: 2;
+            }
+            main #fullpage .p4 .cslide .swiper-slide .circle:hover span{
+                animation: rotate 5s linear 0s infinite; 
+            }
+            
+            main #fullpage .p4 .cslide .swiper-slide .circle .scircle{
+                width: 130px;
+                height: 130px;
+                border-radius: 100%;
+                background-color: white;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50% , -50%);
+                z-index: 3;
+            }
+            main #fullpage .p4 .cslide .swiper-slide .circle .scircle img{
+                width: 80px;
+                height: 80px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50% , -50%);
+            }
+            main #fullpage .p4 .cslide .swiper-slide .circle .scircle p{
+                margin-top: 120px;
+                font-size: 24px;
+                font-weight: bold;
+                color: black;
+                white-space: nowrap;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50% , -50%);
+ 
+                
+            }
+
+            .p3 .fp-tableCell{
+                display: table-cell;
+                vertical-align: top;
+                width: 100%;
+                height: 100%;
+                padding: 50px 0px;
+            }
+            
+            .swiper-pagination-bullet-active{
+                background-color: gray;
+            }
+            .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal > .swiper-pagination-bullets{
+                opacity: 0;
+            }
+            @keyframes pageup{
+                0%{
+                    opacity: 0;
+                }
+                100%{
+                    opacity: 1;
+                }
+            }
+            @keyframes pageup2{
+                0%{
+                    opacity: 0;
+                    transform: translateY(200px);
+                }
+                100%{
+                    opacity: 1;
+                    transform: translateY(0px);
+                }
+            }
+            
+            @keyframes mouse{
+                0%{
+                    transform: translateY(50%);
+                    
+                }
+                100%{
+                    transform: translateY(-50%);
+                    opacity: 0.3;
+                }
+            }
+            @keyframes rotate{
+                0%{
+                    transform: translate(-50%, -50%) rotate(0deg);
+                }
+                50%{
+                    transform: translate(-50%, -50%) rotate(360deg);
+                }
+                100%{
+                    transform: translate(-50%, -50%) rotate(-90deg);
+                }
+            }
+         
+
+        @media only screen and (min-width:100px) and (max-width:1200px){
+            header{
+                top: 0px;
+                background-color: transparent;
+                z-index: 99;
+            }
+            
+             main #fullpage .p2 .aslide .swiper-wrapper .name{
+                display: none;
+            }
+            
+            
+            main #fullpage .p3 .taplist .tapbox .tap.view ul li a .title .name{
+                font-size: 27px;
+            }
+            
+
+        }    
+        @media only screen and (min-width:100px) and (max-width:500px){
+
+            header .button{
+                top: 10px;
+                right: 20px;
+            }   
+            header .menubox img{
+
+                top: 10px;
+                right: 10px;
+            }
+            main #fullpage .p1 h1{
+                font-size: 50px;
+                left: 110px;
+            }
+            main #fullpage .p1 p{
+                left: 115px;
+            }
+            
+            main #fullpage .p2 h2{
+                font-size: 40px;
+                color: black;
+                position: absolute;
+                top: 50px;
+                left: 50px;
+            }
+            main #fullpage .p2 .aslide .swiper-wrapper .name{
+                display: none;
+            }
+            main #fullpage .p2 .aslide .swiper-wrapper .title{
+                left: 70px;
+
+            }
+            main #fullpage .p2 .aslide .swiper-wrapper .skill{
+                left: 70px;
+            }
+            
+            main #fullpage .p3 h1{
+            }
+            
+            main #fullpage .p3 .taplist .tapbox .tap ul{
+                overflow: hidden;
+                overflow-x: auto;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+            }
+            
+            main #fullpage .p3 .taplist .tapbox .tap ul li{
+                width: 210px;
+                height: 210px;
+            }
+            main #fullpage .p3 .taplist .tapbox .tap ul li a img{
+                margin-top: 85px;
+            }
+            main #fullpage .p4 h2{
+                font-size: 40px;
+                color: black;
+                position: absolute;
+                top: 50px;
+                left: 50px;
+            }
+            
+            
+            .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal > .swiper-pagination-bullets{
+                opacity: 1;
+            }
+
+            /* 스크롤바의 height */
+            main #fullpage .p3 .taplist .tapbox .tap ul::-webkit-scrollbar { 
+				height: 7px;
+			}
+			/* 스크롤바의 전체 배경색 */
+			main #fullpage .p3 .taplist .tapbox .tap ul::-webkit-scrollbar-track { 
+				background-color: #fffa; 
+                border-radius: 10px;
+			}
+			/* 스크롤바 색 */
+			main #fullpage .p3 .taplist .tapbox .tap ul::-webkit-scrollbar-thumb {
+				background-color: white;
+				border-radius: 10px;
+			}
+			
+			/* 좌 우 버튼 (버튼 없애기를 함) */
+			main #fullpage .p3 .taplist .tapbox .tap ul::-webkit-scrollbar-button {
+				display: none;
+			}
+            
+            
+        }
+        </style>
+    </head>
+    <body>
+        <header>
+           
+            <nav id="menu">
+                <div class="pc">
+                    <ul>
+                        <li><a href="#page01">HOME</a></li>
+                    </ul>
+                    
+                    <ul>   
+                        <li><a href="#page02">PROFILE</a></li>
+                    </ul>
+                    
+                    <ul>
+                        <li><a href="#page03">PORTFOLIO</a></li>
+                    </ul>
+                       
+                    <ul>
+                        <li><a href="#page04">CONTACT</a></li>
+                    </ul>
+                </div>
+            </nav>
+            
+            <div class="mobile">
+                <div class="button">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                
+                <div class="menubox">
+                    <img src="./img/clear-white-18dp.svg" alt="">    
+                    <ul>
+                        <li><a href="#">HOME</a></li><br>
+                        <li><a href="#">PROFILE</a></li><br>
+                        <li><a href="#">PORTFOLIO</a></li><br>
+                        <li><a href="#">CONTACT</a></li><br>
+                    </ul>
+                </div>    
+            </div>
+        </header>
+        <main>
+            <div id="fullpage">
+                <div class="section p1" data-anchor="page01">
+                    <h1>KIM TAE HO</h1>
+                    <p>web publisher's portfolio website</p>
+                    <a class="mouse" href="#page02"><img src="./img/mouse%20scroll.svg" alt=""></a>
+                </div>
+                
+                <div class="section p2" data-anchor="page02">
+                   <h2>PROFILE</h2>
+                    <div class="swiper-container aslide">
+                        <div class="swiper-wrapper">
+                          <div class="swiper-slide">
+                           <div class="name">
+                               <p>김태호를 소개합니다.</p>
+                               <h1>KIMTAEHO</h1>
+                           </div>
+                           
+                            <div class="title">
+                                <p1>학력사항</p1>
+                                <br>
+                                <p>2015 / 김해건설공업고등학교 중기자동차시스템과 졸업</p>
+                                <p>2019 / 부산과학기술대학교 컴퓨터정보과 졸업</p>
+                                
+                        
+                            </div>   
+                          </div>
+                          <div class="swiper-slide">
+                              <div class="title">
+                                  <p1>경력사항</p1>
+                                  <br>
+                                  <p>2019.12.20 ~ 2020.05.28 / <br>스마트(UI/UX)웹디자인&모바일콘텐츠개발 양성과정</p>
+                              </div>
+                          </div>
+                          
+                          <div class="swiper-slide">
+                              <div class="title">
+                                <ul>
+                                   <h1>SKILL</h1>
+                                    <li><img src="./img/html.png" alt=""></li>
+                                    <li><img src="./img/css.png" alt=""></li>
+                                    <li><img src="./img/js.png" alt=""></li>
+                                    <li><img src="./img/ps.png" alt=""></li>
+                                    <li><img src="./img/il.jpg" alt=""></li>
+                                </ul>
+                              </div>
+                            </div>
+                            
+                            <div class="swiper-slide">
+                                <div class="title">
+                                    <p1>자격사항</p1>
+                                    <p>- ITQ 파워포인트</p>
+                                    <p>- 워드프로세서</p>
+                                    <p>- 1종 보통</p>
+                                </div>
+                           </div>
+                          
+                        </div>
+                           
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>  
+                
+                  
+                <div class="section p3" data-anchor="page03">
+                   <div class="wrap">
+                       <h1>PORTFOLIO</h1>
+                        <div class="taplist">
+                            <div class="menu">
+                                <ul>
+                                    <li class="view">All</li>
+                                    <li>Reactive</li>
+                                    <li>Standard</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="tapbox">
+                                <div class="tap view">
+                                    <ul class="list grid4">
+                                       
+                                        <li>
+                                            <a href="./portfolio/pizzaschool/index2.html" target="_blank">
+                                               <img src="./img/pizzaschoollogo.png" alt="">
+                                                <div class="title">
+                                                    <div class="name">PIZZA SCHOOL</div>
+                                                    <div class="plus">+</div>
+                                                </div>    
+                                            </a>
+                                        </li>  
+
+                                        <li>
+                                            <a href="./portfolio/tving/index.html" target="_blank">
+                                               <img src="./img/tvinglogo.jpg" alt="">
+                                                <div class="title">
+                                                    <div class="name">Tving</div>
+                                                    <div class="plus">+</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        
+                                        <li>
+                                            <a href="./portfolio/one/index.html" target="_blank">
+                                               <img src="./img/hanlogo.jpg" alt="">
+                                                <div class="title">
+                                                    <div class="name">한마음 동물병원</div>
+                                                    <div class="plus">+</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        
+                                        <li>
+                                            <a href="./portfolio/ikea/index.html" target="_blank">
+                                               <img src="./img/ikea-logo.f88b07ceb5a8c356b7a0fdcc9a563d63.svg" alt="">
+                                                <div class="title">
+                                                    <div class="name">IKEA</div>
+                                                    <div class="plus">+</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        
+                                        <li>
+                                            <a href="./portfolio/J1BEATZ/index.html" target="_blank">
+                                               <img src="./img/logo__bk.jpg" alt="">
+                                                <div class="title">
+                                                    <div class="name">J1BEATZ</div>
+                                                    <div class="plus">+</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        
+                                        <li>
+                                            <a href="./portfolio/YellowFinger/index.html" target="_blank">
+                                               <img src="./img/yellowlogo.svg" alt="">
+                                                <div class="title">
+                                                    <div class="name">Yellow Finger</div>
+                                                    <div class="plus">+</div>
+                                                </div>
+                                            </a>
+                                        </li>    
+                                        
+                                    </ul>
+                                </div>
+                                
+                                <div class="tap">
+                                    <ul class="list grid4">
+                                        <li>
+                                            <a href="./portfolio/pizzaschool/index2.html" target="_blank">
+                                               <img src="./img/pizzaschoollogo.png" alt="">
+                                                <div class="title">
+                                                    <div class="name">PIZZA SCHOOL</div>
+                                                    <div class="plus">+</div>
+                                                </div>    
+                                            </a>
+                                        </li>  
+                                        
+                                        <li>
+                                            <a href="./portfolio/one/index.html" target="_blank">
+                                               <img src="./img/hanlogo.jpg" alt="">
+                                                <div class="title">
+                                                    <div class="name">한마음 동물병원</div>
+                                                    <div class="plus">+</div>
+                                                </div>
+                                            </a>
+                                        </li>  
+                                          
+                                        <li>
+                                            <a href="./portfolio/ikea/index.html" target="_blank">
+                                               <img src="./img/ikea-logo.f88b07ceb5a8c356b7a0fdcc9a563d63.svg" alt="">
+                                                <div class="title">
+                                                    <div class="name">IKEA</div>
+                                                    <div class="plus">+</div>
+                                                </div>
+                                            </a>
+                                        </li> 
+                                          
+                                        <li>
+                                            <a href="./portfolio/YellowFinger/index.html" target="_blank">
+                                               <img src="./img/yellowlogo.svg" alt="">
+                                                <div class="title">
+                                                    <div class="name">Yellow Finger</div>
+                                                    <div class="plus">+</div>
+                                                </div>
+                                            </a>
+                                        </li>        
+                                           
+                                    </ul>
+                                </div>
+                                
+                                <div class="tap">
+                                    <ul class="list grid4">
+                                      
+                                       <li>
+                                            <a href="./portfolio/tving/index.html" target="_blank">
+                                               <img src="./img/tvinglogo.jpg" alt="">
+                                                <div class="title">
+                                                    <div class="name">Tving</div>
+                                                    <div class="plus">+</div>
+                                                </div>
+                                            </a>
+                                        </li> 
+                                        
+                                        <li>
+                                            <a href="./portfolio/J1BEATZ/index.html" target="_blank">
+                                               <img src="./img/logo__bk.jpg" alt="">
+                                                <div class="title">
+                                                    <div class="name">J1BEATZ</div>
+                                                    <div class="plus">+</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>      
+                </div> 
+                
+                <div class="section p4" data-anchor="page04">
+                    <h2>CONTACT</h2>
+                    <div class="swiper-container cslide">
+                       
+                        <div class="swiper-wrapper">
+                           
+                            <div class="swiper-slide">
+                                <div class="circle">
+                                   <span></span>
+                                    <div class="scircle">
+                                        <img src="./img/settings_phone-24px.svg" alt="">
+                                        <p>010-8350-8906</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="swiper-slide">
+                                <div class="circle">
+                                    <span></span>
+                                    <div class="scircle">
+                                        <img src="./img/email-24px.svg" alt="">
+                                        <p>mk2355@naver.com</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="swiper-slide">
+                              <div class="circle">
+                                    <span></span>
+                                    <div class="scircle">
+                                        <img src="./img/home-24px%20(1).svg" alt="">
+                                        <p>경상남도 김해시</p>
+                                    </div>
+                              </div>
+                            </div>
+                           
+                        </div>
+                        
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div> 
+                
+            </div>       
+
+        </main>
+        <footer></footer>
+    </body>
+    <script>    
+        
+		new fullpage('#fullpage', {
+			//options here
+			css3: true,
+			autoScrolling:true,
+			scrollHorizontally: true,
+			afterLoad: function(origin, destination, direction){
+                
+                $("#menu ul li a").removeClass("view");
+                $("#menu ul li a").eq(destination.index).addClass("view");
+
+			} 
+		});
+        
+        let swiper = new Swiper('.aslide', {
+          slidesPerView: 4,
+          spaceBetween: 0,
+          // init: false,
+          pagination: {
+            el: '.swiper-pagination',
+          },
+          breakpoints: {
+            100: {
+              slidesPerView: 1,
+              spaceBetween: 10,
+            },
+            800: {
+              slidesPerView: 3,
+              spaceBetween: 10,
+            },
+            1200: {
+              slidesPerView: 4,
+              spaceBetween: 10,
+            },
+          }
+        });
+        
+        let swiper2 = new Swiper('.cslide', {
+          slidesPerView: 3,
+          spaceBetween: 10,
+          // init: false,
+          pagination: {
+            el: '.swiper-pagination',
+          },
+          breakpoints: {
+            100: {
+              slidesPerView: 1,
+              spaceBetween: 30,
+            },
+            800: {
+              slidesPerView: 2,
+              spaceBetween: 30,
+            },
+            1200: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+            },
+          }
+        });
+        
+//        페이지 랜덤 배경
+        $(function(){
+        
+//            3페이지 포트폴리오 탭리스트
+            $(".taplist .menu li").on("click",function(){
+                
+                $(".taplist .menu li").removeClass("view");
+                $(".taplist .tapbox .tap").removeClass("view");
+                
+                const i = $(this).index();
+                $(this).addClass("view");
+                $(".taplist .tapbox .tap").eq(i).addClass("view");
+            });
+            
+//            3페이지 텝리스트 클릭시
+            $(".taplist ul li").on("click",function(){
+                
+                $(".taplist ul li").removeClass("view");
+                $(this).addClass("view"); 
+            });
+
+//            모바일메뉴버튼
+            $(".button").on("click",function(){
+                $(".menubox").addClass("view");
+            });
+            
+            $(".menubox img").on("click",function(){
+                $(".menubox").removeClass("view");
+            }); 
+
+            
+        });
+        
+
+
+
+
+
+        
+
+    </script>
+</html>

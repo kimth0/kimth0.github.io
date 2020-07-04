@@ -1,0 +1,1870 @@
+<!doctype html>
+<html>
+	<head>
+		<title>J1BEATZ</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="./lib/setup.css">
+		<link rel="stylesheet" href="./lib/swiper.css">
+		<script src="./lib/jquery.js"></script>
+		<script src="./lib/swiper.js"></script>
+		<style>
+		
+			body{
+				background-color: #1b1b38;
+				display: grid;
+				grid-template-columns: 320px 1fr;
+				grid-gap: 0px;
+			}
+		
+			body header{
+				background-color: #16162d;
+				width: 320px;
+				height: 100vh;
+				position: fixed;
+				top: 0px;
+				left: 0px;
+				z-index: 999;
+			}
+			
+			
+			
+			
+			body header .head{
+				position: relative;
+				width: 100%;
+				height: 100%;
+    			background-color: #16162d;
+			}
+			
+			body header .head > .button{
+				display: inline-block;
+				line-height: 60px;
+				width: 200px;
+				border-radius: 100px;
+				background-color: #7e2aff;
+				color:white;
+				font-size: 24px;
+				position: absolute;
+				top: 120px;
+				right: -50px;
+				text-align: right;
+				padding: 0px 20px;
+				cursor: pointer;
+				z-index: -3;
+				display: none;
+			}
+			
+			
+			@keyframes open{
+				0%{
+					transform: translateX(-100%);
+				}
+				100%{
+					transform: translateX(0%);
+				}
+			}
+			
+			@keyframes close{
+				0%{
+					transform: translateX(0%);
+				}
+				100%{
+					transform: translateX(-100%);
+				}
+			}
+			
+			
+			header #logo{}
+			header #logo h1{
+				font-size: 0px;
+				width: 320px;
+				height: 90px;
+				background-image: url(./img/logo__wh.svg);
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: 180px 80px;
+			}
+			
+			
+			header #menu{}
+			header #menu .menu{
+				display: grid;
+				grid-template-columns: 1fr 1fr 1fr;
+				grid-gap: 0px;
+				margin-top: 50px;
+			}
+			
+			header #menu .menu li{
+				background-color: #351c6c;
+				height: 100px;
+				display: flex;
+				justify-content: center;
+				align-content: center;
+				align-items: center;
+				position: relative;
+				padding-bottom: 5px;
+				cursor: pointer;
+			}
+			
+			header #menu .menu li:hover{
+				background-color: #0f0f1f;
+			}
+			
+			header #menu .menu li .icon{
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: contain;
+				width: 32px;
+				height: 32px;
+				display: inline-block;
+			}
+			
+			header #menu .menu li .icon.mypage{
+				background-image: url(./img/btn_01_mypage.svg);
+			}
+			header #menu .menu li .icon.shopping{
+				background-image: url(./img/btn_02_cart.svg);
+			}
+			header #menu .menu li .icon.follow{
+				background-image: url(./img/btn_03_follow.svg);
+			}
+			
+			
+			header #menu .menu li .name{
+				color:white;
+				font-size: 12px;
+				margin-top: 6px;
+				opacity: 0;
+				position: absolute;
+				width: 100%;
+				left: 50%;
+				transform: translateX(-50%);
+				transition: opacity 0.3s;
+			}
+			
+			header #menu .menu li:hover .name{
+				opacity: 1;
+			}
+
+			
+			header #menu .menuBox{
+				background-color: #0f0f1f;
+			}
+			header #menu .menuBox > li{
+				width: 100%;
+				color:white;
+				padding: 20px 0px;
+				display: none;
+			}
+			
+			header #menu .menuBox > li .login{
+				color:white;
+    			background-color: #7e2aff;
+				line-height: 45px;
+				width: 260px;
+				border-radius: 30px;
+				margin: 10px 0px;
+			}
+			
+			header #menu .menuBox li .login:hover{
+    			background-color: #6100f6;
+			}
+			
+			header #menu .menuBox li .sublist{
+				margin-top: 20px;
+			}
+			header #menu .menuBox li .sublist li{
+				width: 100%;
+			}
+			header #menu .menuBox li .sublist li a{
+				color:white;
+				line-height: 45px;
+				width: 100%;
+			}
+			header #menu .menuBox li .sublist li:hover a{
+    			background-color: #7e2aff;
+			}
+			
+			header .menulist{}
+			header .menulist > li{
+				width: 100%;
+			}
+			header .menulist > li .list,
+			header .menulist > li a{
+				line-height: 60px;
+				color:white;
+				padding: 0px 20px;
+				text-align: left;
+				width: 100%;
+				cursor: pointer;
+			}
+			
+			header .menulist > li:hover .list,
+			header .menulist > li:hover > a{
+				background-color: #2b1a57;
+			}
+			
+			header .menulist > li .list{
+				position: relative;
+			}
+			header .menulist > li .list::after{
+				content: " ";
+				font-size: 0px;
+				position: absolute;
+				right: 20px;
+				top: 50%;
+				width: 0px;
+				height: 0px;
+				border: 7px solid transparent;
+				border-top: 7px solid rgba(255, 255, 255, 0.3);
+			}
+			
+			header .menulist > li > ul{
+				overflow: hidden;
+				height: 0px;
+			}
+			
+			header .menulist > li > ul.view{
+				height: 30vh;
+				overflow-y: auto;
+			}
+			
+			/* menulist SCROLL */
+			/* 스크롤바의 width */
+			header .menulist > li > ul::-webkit-scrollbar { 
+				width: 4px;
+			}
+			/* 스크롤바의 전체 배경색 */
+			header .menulist > li > ul::-webkit-scrollbar-track { 
+				background-color: #0002; 
+			}
+			/* 스크롤바 색 */
+			header .menulist > li > ul::-webkit-scrollbar-thumb {
+				background-color: #555;
+				border-radius: 4px;
+			}
+			
+			/* 위 아래 버튼 (버튼 없애기를 함) */
+			header .menulist > li > ul::-webkit-scrollbar-button {
+				display: none;
+			}
+			
+			
+			
+			
+			
+			header .menulist > li > ul > li{
+				width: 100%;
+			}
+			header .menulist > li > ul > li:hover{
+				background-color: #211842;
+			}
+			header .menulist > li > ul > li a{
+				padding: 0px 40px;
+				color:#888;
+				line-height: 40px;
+			}
+			
+			
+			body aside{
+				width: 100%;
+				height: 100vh;
+				background-color: #777;
+			}
+			
+			main{}
+            
+			main .section{
+                display: inline-block;
+                width: 100%;
+                height: 450px;
+            }
+			main .section > .title{
+                display: inline-block;
+                width: 100%;
+                text-align: left;
+                padding: 0px 20px;
+                margin: 20px 0px;
+            }
+			main .section > .title > .name{
+                display: inline-block;
+                font-size: 24px;
+                color: white;
+            }
+			main .section > .title > .sub{
+                display: inline-block;
+                color: #eee;
+                font-size: 16px;
+            }
+			
+			main .header{
+				padding: 40px 20px;
+			}
+			main .header .searchfrom{
+				display: grid;
+				float: left;
+				grid-template-columns: 1fr 40px;
+				width: 400px;
+				border-bottom: 1px solid #9b4eff;
+			}
+			main .header .searchfrom #searchText{
+				width: 100%;
+				background-color: transparent;
+				border: 0px;
+				padding: 0px 10px;
+				outline: 0px;
+				font-size: 16px;
+				color:white;
+			}
+			main .header .searchfrom #searchButton{
+				width: 100%;
+				height: 40px;
+				border: 0px;
+				background-color: transparent;
+				font-size: 0px;
+				background-image: url(./img/btn_sch_big.svg);
+				background-repeat: no-repeat;
+				background-size: 22px 22px;
+				background-position: center;
+				cursor: pointer;
+			}
+			
+			main .header .searchfrom #searchButton:hover{
+				opacity: 0.5;
+			}
+			
+			main .slideBox{
+				float: right;
+			}
+			main .slideBox .member{
+				display: inline-block;
+			}
+			main .slideBox .member li{
+				position: relative;
+				padding: 0px 5px;
+			}
+			main .slideBox .member li::after{
+				content: "|";
+				color: #888;
+				font-size: 16px;
+				position: absolute;
+				top: 1px;
+				right: -5px;
+			}
+			
+			main .slideBox .member li:last-child:after{
+				display: none;
+			}
+			
+			main .slideBox .member li a{
+				color: #ccc;
+				padding: 4px 10px;
+				font-size: 15px;
+			}
+			
+			main .slideBox .sns{
+				display: inline-block;
+				background-color: #131327;
+				border-radius: 14px;
+				padding: 10px;
+				margin-top: -10px;
+			}
+			main .slideBox .sns li{
+				padding: 0px 4px;
+			}
+			main .slideBox .sns li a{
+				width: 30px;
+				height: 30px;
+				font-size: 0px;
+				background-repeat: no-repeat;
+				background-size: 26px 26px;
+				background-position: center;
+				opacity: 0.4;
+			}
+			
+			main .slideBox .sns li a:hover{
+				opacity: 1;
+			}
+			
+			main .slideBox .sns li a.blog{
+				background-image: url(./img/cs-btn-blg.svg);
+			}
+			main .slideBox .sns li a.kakao{
+				background-image: url(./img/cs-btn-kkt.svg);
+			}
+			main .slideBox .sns li a.inst{
+				background-image: url(./img/cs-btn-insta.svg);
+			}
+			main .slideBox .sns li a.youtube{
+				background-image: url(./img/cs-btn-ytb.svg);
+			}
+			
+			main .main{
+				margin: 50px 0px;
+				height: 450px;
+				width: 100%;
+				position: relative;
+				overflow: hidden;
+			}
+			
+			main .main::before,
+			main .main::after{
+				content: " ";
+				font-size: 0px;
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				width: 13%;
+				height: 100%;
+				display: inline-block;
+				background: linear-gradient(to right, rgba(27, 27, 56, 0.92), transparent);
+				z-index: 2;
+			}
+			
+			main .main::after{
+				right: 0px;
+				left: inherit;
+				background: linear-gradient(to left, rgba(27, 27, 56, 0.92), transparent);
+			}
+			
+			
+			main .main .center{
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+			
+			main .main .slider{
+				width: 2400px;
+				height: 400px;
+			}
+			main .main .slider .swiper-slide{
+				width: 800px;
+				height: 320px;
+				border-radius: 32px;
+				overflow: hidden;
+			}
+			main .main .slider .swiper-slide img{
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				width: 1100px;
+			}
+			
+			main .main .slider .swiper-pagination{}
+			main .main .slider .swiper-pagination .swiper-pagination-bullet{
+				border-radius: 0px;
+				width: 100px;
+				height: 4px;
+				opacity: 0.4;
+				background-color: #666;
+				margin: 0px 2px;
+			}
+			main .main .slider .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active{
+				opacity: 1;
+				background-color: #7e2aff;
+			}
+			
+			main .main .slider .swiper-pagination .swiper-pagination-bullet:hover{
+				opacity: 0.8;
+			}
+			
+			
+			main .mood{
+				margin: 30px 0px;
+				position: relative;
+				overflow: hidden;
+				width: 100%;
+				height: 300px;
+			}
+			
+			
+			main .mood::before,
+			main .mood::after{
+				content: " ";
+				font-size: 0px;
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				width: 6%;
+				height: 100%;
+				display: inline-block;
+				background: linear-gradient(to right, rgba(27, 27, 56, 0.92), transparent);
+				z-index: 2;
+			}
+			
+			main .mood::after{
+				right: 0px;
+				left: inherit;
+				background: linear-gradient(to left, rgba(27, 27, 56, 0.92), transparent);
+			}
+			
+			
+			main .mood .center{
+				position: absolute;
+				top: 80%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+			
+			main .mood .center .moodlist{
+				width: 2400px;
+				height: 300px;
+			}	
+			main .mood .center .moodlist .swiper-slide{
+				width: 300px;
+				height: 150px;
+				overflow: hidden;
+				border-radius: 30px;
+				box-shadow: 6px 6px 16px #222;
+			}
+			
+			main .mood .center .moodlist .swiper-slide::after{
+				content: " ";
+				font-size: 0px;
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				width: 100%;
+				height: 100%;
+				background-color: #2225;
+				z-index: 2;
+			}
+			
+			main .mood .center .moodlist .swiper-slide .name{
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				color:white;
+				font-size: 22px;
+				font-weight: bold;
+				z-index: 3;
+			}	
+			main .mood .center .moodlist .swiper-slide img{
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				z-index: 1;
+			}				
+			main .mood > .title .edit{
+				float: right;
+				color:#aaa;
+				padding: 0px 20px;
+			}
+			
+            main .track{
+                height: auto;
+            }
+            
+			main .track .content{
+				padding: 0px 20px;
+			}
+			
+						
+			main .track .content .playlist li,
+			main .track .content .label{
+				display: grid;
+				grid-template-columns: 60px 1fr 120px 120px 120px 300px 200px;
+			}
+			
+			
+			main .track .content .label{
+				background-color: #131327;
+				border-radius: 6px;
+			}
+			
+			main .track .content .label li,
+			main .track .content .label li span{
+				color:#999;
+				line-height: 40px;
+				display: inline-block;
+				margin: 0px 2px;
+			}
+			
+			main .track .content .playlist{
+                overflow: hidden;
+				height: 404px;
+                overflow-y: auto;
+            }			
+			main .track .content .playlist li{
+				padding: 10px 0px;
+				border-bottom: 1px solid #6665;
+			}			
+			main .track .content .playlist li:hover{
+				background-color: #16162d;
+			}
+			main .track .content .playlist li div{
+				color:white;
+				display: flex;
+				justify-content: center;
+				align-content: center;
+				align-items: center;
+				font-size: 16px;
+			}
+			main .track .content .playlist li div a{
+				color:white;
+				font-size: 16px;
+			}
+			
+			main .track .content .playlist li .number{}
+			main .track .content .playlist li .name{
+				justify-content: flex-start;	
+			}
+			main .track .content .playlist li .name .poto{
+				position: relative;
+				overflow: hidden;
+				width: 60px;
+				height: 60px;
+				border-radius: 10px;
+				display: inline-block;
+				margin: 0px 10px;
+			}
+			main .track .content .playlist li .name .poto img{
+				background-color: #ccc;
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+			
+			main .track .content .playlist li .producer{}
+			main .track .content .playlist li .moods{}
+			main .track .content .playlist li .genre{}
+			main .track .content .playlist li .option{}
+			
+			main .track .content .playlist li .option .icon{
+				width: 34px;
+				height: 34px;
+				display: inline-block;
+				margin: 0px 8px;
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: 24px 24px;
+				cursor: pointer;
+			}
+			main .track .content .playlist li .option .icon.play{
+				background-image: url(./img/ctrl_btn_mini_play-wh.svg);
+			}
+			main .track .content .playlist li .option .icon.list{
+				background-image: url(./img/ctrl_btn_mini_list_off-wh.svg);
+			}
+			main .track .content .playlist li .option .icon.share{
+				background-image: url(./img/ctrl_btn_mini_share_off-wh.svg);
+			}
+			main .track .content .playlist li .option .icon.like{
+				background-image: url(./img/ctrl_btn_mini_heart_off-wh.svg);
+			}
+			main .track .content .playlist li .option .icon.more{
+				background-image: url(./img/ctrl_btn_mini_dots_off-wh.svg);
+			}
+			
+			
+			main .track .content .playlist li .option .icon.play:hover{
+				opacity: 0.6;
+			}
+			main .track .content .playlist li .option .icon.list:hover{
+				background-image: url(./img/ctrl_btn_mini_list_on.svg);
+			}
+			main .track .content .playlist li .option .icon.share:hover{
+				background-image: url(./img/ctrl_btn_mini_share_on.svg);
+			}
+			main .track .content .playlist li .option .icon.like:hover{
+				background-image: url(./img/ctrl_btn_mini_heart_on.svg);
+			}
+			main .track .content .playlist li .option .icon.more:hover{
+				opacity: 0.6;
+			}
+			
+			
+			main .track .content .playlist li .cart{
+				display: inline-block;
+			}
+			
+			main .track .content .playlist li .cart .pay,
+			main .track .content .playlist li .cart .free{
+				display: inline-block;
+				cursor: pointer;
+				font-size: 16px;
+				line-height: 40px;
+				padding: 0px 10px;
+				border:0px;
+				border-radius: 8px;
+				background-color: white;
+				color:black;
+			}
+			
+			main .track .content .playlist li .cart .pay{
+				background-color: #7300df;
+				color:white;
+               
+			}	
+            main .track .content .playlist li .cart .pay:hover{
+                 background-color: #4a0090;
+            }
+			main .track .content .playlist li .cart .pay i{
+				display: inline-block;
+				margin-top: 7px;	
+				width: 26px;
+				height: 26px;
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: 24px 24px;
+				background-image: url(./img/btn_02_cart.svg);
+			}
+			
+			/* playlist SCROLL */
+			/* 스크롤바의 width */
+			main .track .content .playlist::-webkit-scrollbar { 
+				width: 4px;
+			}
+			/* 스크롤바의 전체 배경색 */
+			main .track .content .playlist::-webkit-scrollbar-track { 
+				background-color: #0002; 
+			}
+			/* 스크롤바 색 */
+			main .track .content .playlist::-webkit-scrollbar-thumb {
+				background-color: #555;
+				border-radius: 4px;
+			}
+			
+			/* 위 아래 버튼 (버튼 없애기를 함) */
+			main .track .content .playlist::-webkit-scrollbar-button {
+				display: none;
+			}
+            
+            
+            main .producers{
+                position: relative;
+                width: 100%;
+                height: 450px;
+                margin-top: 50px;
+                overflow: hidden;
+                
+            }
+            main .producers .edit{
+                float: right;
+                color: gray;
+            }
+            main .producers .center{
+                position: absolute;
+                top: 55%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                
+            }
+            main .producers .center .plist{
+                width: 1900px;
+            }
+            main .producers .center .plist .swiper-slide{}
+            
+            main .producers .center .plist .swiper-slide .img{
+                display: inline-block;
+                width: 220px;
+                height: 220px;
+                background-color: #17172f;
+                border-radius: 15px;
+                box-shadow: 10px 5px 8px black;
+                position: relative;
+                overflow: hidden;
+            }
+            main .producers .center .plist .swiper-slide .img img{
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 100%;
+                height: 100%;
+                background-color: #ccc;
+            }
+            
+            main .producers .center .plist .swiper-slide .title{
+                margin: 10px 0px 20px;
+                color: white;
+                font-size: 24px;
+                width: 100%;
+                text-align: center;
+                
+            }
+            
+            main .producers .center .plist .swiper-slide .content{
+                background-color: #16162d;
+                padding: 10px 20px;
+                border-radius: 10px;
+                display: inline-block;
+            }
+            main .producers .center .plist .swiper-slide .content li{
+                padding: 0px 10px;
+            }
+            main .producers .center .plist .swiper-slide .content li .name{
+                color: #bc9bff;
+            }
+            main .producers .center .plist .swiper-slide .content li .value{
+                color: white;
+            }
+            main .producers .center .plist .swiper-slide .content li .value .like{
+                width: 16px;
+                height: 16px;
+                background-image: url(./img/ctrl_btn_mini_heart_on.svg);
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: contain;
+                display: inline-block;
+                margin-top: 3px;
+            }
+            
+            
+            main .footer{
+                color: #aaa;
+                margin-top: 100px;
+                border-top: 1px solid rgba(188, 155, 255, 0.2);
+                height: 250px;
+            }
+            
+            main .footer .name{
+                float: left;
+                padding: 25px 25px 0px 20px;
+                font-size: 22px;
+                font-weight: bold;
+                text-align: left;
+            }
+            
+            main .footer .address{
+                text-align: left;
+                margin-top: 30px;
+                
+            }
+            main .footer .address span{
+                border-right: 1px solid #aaa;
+                padding: 0px 5px;
+            }
+            main .footer .address span2{
+                border-right: 1px solid #aaa;
+                padding: 0px 5px;
+                text-decoration: underline;
+            }
+            main .footer p{
+                float: left;
+                padding: 10px 5px;
+            }
+            
+            
+            main .playbox{
+                background-color: #000c;
+                width: 100%;
+                height: 120px;
+                bottom: 0px;
+                left: 0px;
+                position: fixed;
+                z-index: 9999;
+                display: grid;
+                grid-template-columns: 360px 1fr 360px;
+            }
+            main .playbox .control{
+                margin: 15px 0px 10px;
+            }
+            main .playbox .control div{
+                display: inline-block;
+                width: 60px;
+                height: 60px;
+                margin: 0px 15px;
+                font-size: 0px;
+                background-image: url(./img/control_btn01.svg);
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size : 480px 180px;
+                cursor: pointer;
+            }
+            main .playbox .control div:hover{
+                opacity: 0.6;
+            }
+            
+            main .playbox .control .repeat{
+                background-position: -12px 1px;
+            }
+            
+            main .playbox .control .previous{
+                background-position: -132px 1px;
+            }
+            
+            main .playbox .control .play{
+                background-position: -252px 1px;
+            }
+            
+            main .playbox .control .next{
+                background-position: -313px 1px;
+            }
+            
+            main .playbox .control .shuffle{
+                background-position: -12px -120px;
+            }
+            
+            main .playbox .timebar{
+                
+            }
+            main .playbox .timebar .time{
+                margin: 0px 10px;
+                display: inline-block;
+                margin-top: -8px;
+            }
+            main .playbox .timebar .time.start{
+                color: white;
+            }
+            main .playbox .timebar .time.end{
+                color: #bc9bff;
+            }
+            
+            main .playbox .timebar .bar{
+                width: 500px;
+                height: 4px;
+                background-color: #bc9bff;
+                text-align: center;
+                display: inline-block;
+                border-radius: 6px;
+                position: relative;
+                cursor: not-allowed;
+            }
+            main .playbox .timebar .bar::before{
+                content: " ";
+                font-size: 0px;
+                width: 20px;
+                height: 20px;
+                border-radius: 100%;
+                background-color: white;
+                top: 50%;
+                left: 0px;
+                position: absolute;
+                transform: translateY(-50%);
+            }
+            
+            main .playbox .button{
+                margin-top: 30px;
+                margin-right: 9px;
+            }
+            main .playbox .button div{
+                display: inline-block;
+                width: 60px;
+                height: 60px;
+                margin: 0px 10px;
+                font-size: 0px;
+                background-image: url(./img/control_btn01.svg);
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size : 480px 180px;
+                cursor: pointer;
+            }
+            main .playbox .button div:hover{
+                opacity: 0.6;
+            }
+            
+            main .playbox .button .like{
+                background-position: -133px -120px;
+            }
+            main .playbox .button .sound{
+                background-position: -12px -61px;
+            }
+            main .playbox .button .list{
+                background-position: -133px -61px;
+            }
+            main .playbox .button .box{
+                background-color: #7300df;
+                margin-top: 7px;
+                padding: 13px 20px;
+                border-radius: 10px;
+                color: white;
+            }
+            main .playbox .button .box:hover{
+                background-color: #4a0090;
+            }
+		@media only screen and (min-width:100px) and (max-width:1200px){
+			
+			body{
+				grid-template-columns: 0px 1fr;
+			}
+			
+			
+			body header{
+				transform: translateX(-100%);
+				animation: close 0.5s cubic-bezier(0, 0, 0.54, 1.5) 0s 1;
+				animation-fill-mode: forwards;
+			}
+			
+			body header.view{
+				animation: open 0.5s cubic-bezier(0, 0, 0.54, 1.5) 0s 1;
+				animation-fill-mode: forwards;
+			}
+			
+			body header .head > .button{
+				display: inline-block;
+			}
+			
+			
+		}
+		
+		</style>
+	</head>
+	<body>
+		<header>
+			<div class="head">
+				<a id="logo" href="#">
+					<h1>J1BEATZ</h1>
+</a>
+
+				<nav id="menu">
+					<ul class="menu">
+						<li>
+							<div>
+								<div class="icon mypage"></div>
+								<div class="name">마이페이지</div>
+							</div>
+						</li>
+						<li>
+							<div>
+								<div class="icon shopping"></div>
+								<div class="name">장바구니</div>
+							</div>
+						</li>
+						<li>
+							<div>
+								<div class="icon follow"></div>
+								<div class="name">팔로우</div>
+							</div>
+						</li>
+					</ul>
+					<ul class="menuBox">
+						<li>
+
+							<a class="login" href="#">로그인</a>
+
+							<ul class="sublist">
+								<li>
+									<a href="#">회원가입</a>
+								</li>
+							</ul>
+
+						</li>
+						<li>로그인이 필요한 기능입니다.</li>
+						<li>로그인이 필요한 기능입니다.</li>
+					</ul>
+</nav>
+
+				<ul class="menulist">
+					<li><a href="#">실시간TOP100</a></li>
+					<li>
+						<div class="list">분위기</div>
+						<ul>
+							<li><a href="#">격렬</a></li>
+							<li><a href="#">긴장</a></li>
+							<li><a href="#">몽환적인</a></li>
+							<li><a href="#">신나는</a></li>
+							<li><a href="#">행복</a></li>
+							<li><a href="#">섹시</a></li>
+							<li><a href="#">우울한</a></li>
+							<li><a href="#">불안한</a></li>
+						</ul>
+					</li>
+					<li>
+						<div class="list">장르</div>
+						<ul>
+							<li><a href="#">boombap</a></li>
+							<li><a href="#">jazz</a></li>
+							<li><a href="#">soul</a></li>
+							<li><a href="#">r&b</a></li>
+							<li><a href="#">pop</a></li>
+							<li><a href="#">edm</a></li>
+							<li><a href="#">reggae</a></li>
+							<li><a href="#">rock</a></li>
+							<li><a href="#">trap</a></li>
+						</ul>
+					</li>
+					<li><a href="#">프로듀서</a></li>
+</ul>
+		
+				<div class="button mobile">〉</div>
+		
+			</div>
+		</header>
+		<aside></aside>
+		<main>
+			
+			<div class="header">
+				
+				<form action="index.html" method="get" class="searchfrom">
+					<input id="searchText" type="text" placeholder="제목/아티스트/#태그검색">
+					<input type="submit" value="검색" id="searchButton">	
+				</form>
+				
+				
+				
+				<div class="slideBox">
+					
+					<ul class="member">
+						<li><a href="#">로그인</a></li>
+						<li><a href="#">고객센터</a></li>
+					</ul>
+					
+					<ul class="sns">
+						<li><a href="#" class="blog">blog</a></li>
+						<li><a href="#" class="kakao">kakao</a></li>
+						<li><a href="#" class="inst">inst</a></li>
+						<li><a href="#" class="youtube">youtube</a></li>
+					</ul>
+					
+				</div>
+				
+				
+			</div>
+			
+			<div class="main">
+			   <div class="center">
+				  <div class="swiper-container slider">
+						<div class="swiper-wrapper">
+						
+							<div class="swiper-slide">
+								<img src="./img/slide01.jpg" alt="">
+							</div>
+							<div class="swiper-slide">
+								<img src="./img/slide02.jpg" alt="">
+							</div>
+							<div class="swiper-slide">
+								<img src="./img/slide03.jpg" alt="">
+							</div>
+							
+						</div>
+						<div class="swiper-pagination"></div>
+				  </div>
+				</div>
+			</div>
+			
+			<div class="section mood">
+			
+				<div class="title">
+				
+					<div class="name">
+						분위기
+						<div class="sub"> 총 3개까지 선택가능합니다.</div>
+					</div>
+					
+					<div class="edit">편집</div>
+					
+				</div>
+			
+				<div class="center">
+					<div class="swiper-container moodlist">
+						<div class="swiper-wrapper">
+						
+							<div class="swiper-slide">
+								<div class="name">섹시</div>
+								<img src="./img/mood/mood_01.jpg" alt="">
+							</div>
+							
+							<div class="swiper-slide">
+								<div class="name">우울한</div>
+								<img src="./img/mood/mood_02.jpg" alt="">
+							</div>
+							
+							<div class="swiper-slide">
+								<div class="name">불안한</div>
+								<img src="./img/mood/mood_03.jpg" alt="">
+							</div>
+							
+							<div class="swiper-slide">
+								<div class="name">격렬</div>
+								<img src="./img/mood/mood_04.jpg" alt="">
+							</div>
+							
+							<div class="swiper-slide">
+								<div class="name">긴장</div>
+								<img src="./img/mood/mood_05.jpg" alt="">
+							</div>
+							
+							<div class="swiper-slide">
+								<div class="name">몽환적인</div>
+								<img src="./img/mood/mood_06.jpg" alt="">
+							</div>
+							
+							<div class="swiper-slide">
+								<div class="name">신나는</div>
+								<img src="./img/mood/mood_07.jpg" alt="">
+							</div>
+							
+							<div class="swiper-slide">
+								<div class="name">행복</div>
+								<img src="./img/mood/mood_08.jpg" alt="">
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="section track">
+				<div class="title">
+					<div class="name">NEW TRACK</div>
+				</div>
+				
+				<div class="content">
+					<ul class="label">
+						<li>순위</li>
+						<li>곡</li>
+						<li>프로듀서</li>
+						<li>분위기</li>
+						<li>장르</li>
+						<li>
+							<span>듣기</span>
+							<span>재생목록</span>
+							<span>공유</span>
+							<span>좋아요</span>
+							<span>더보기</span>
+						</li>
+						<li>장바구니</li>
+					</ul>	
+					<ul class="playlist">
+						<li>
+							<div class="number">1</div>
+							<div class="name">
+								<div class="poto">
+									<img src="" alt="">
+								</div>
+								<a href="#">Y?</a>
+							</div>
+							<div class="producer">
+								<a href="">Ragamuffin</a>
+							</div>
+							<div class="moods">우울한</div>
+							<div class="genre">boombap</div>
+							<div class="option">
+								<div class="icon play"></div>
+								<div class="icon list"></div>
+								<div class="icon share"></div>
+								<div class="icon like"></div>
+								<div class="icon more"></div>
+							</div>
+							<div class="cart">
+								<div class="free">FREE</div>
+								<div class="pay">
+									<i></i>
+									20,000원
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="number">2</div>
+							<div class="name">
+								<div class="poto">
+									<img src="" alt="">
+								</div>
+								<a href="#">AK47</a>
+							</div>
+							<div class="producer">
+								<a href="">Ragamuffin</a>
+							</div>
+							<div class="moods">우울한</div>
+							<div class="genre">boombap</div>
+							<div class="option">
+								<div class="icon play"></div>
+								<div class="icon list"></div>
+								<div class="icon share"></div>
+								<div class="icon like"></div>
+								<div class="icon more"></div>
+							</div>
+							<div class="cart">
+								<div class="free">FREE</div>
+								<div class="pay">
+									<i></i>
+									20,000원
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="number">3</div>
+							<div class="name">
+								<div class="poto">
+									<img src="" alt="">
+								</div>
+								<a href="#">Million Dollar</a>
+							</div>
+							<div class="producer">
+								<a href="">Ragamuffin</a>
+							</div>
+							<div class="moods">우울한</div>
+							<div class="genre">boombap</div>
+							<div class="option">
+								<div class="icon play"></div>
+								<div class="icon list"></div>
+								<div class="icon share"></div>
+								<div class="icon like"></div>
+								<div class="icon more"></div>
+							</div>
+							<div class="cart">
+								<div class="free">FREE</div>
+								<div class="pay">
+									<i></i>
+									20,000원
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="number">4</div>
+							<div class="name">
+								<div class="poto">
+									<img src="" alt="">
+								</div>
+								<a href="#">혼종 trapsoul 비트</a>
+							</div>
+							<div class="producer">
+								<a href="">Ragamuffin</a>
+							</div>
+							<div class="moods">우울한</div>
+							<div class="genre">boombap</div>
+							<div class="option">
+								<div class="icon play"></div>
+								<div class="icon list"></div>
+								<div class="icon share"></div>
+								<div class="icon like"></div>
+								<div class="icon more"></div>
+							</div>
+							<div class="cart">
+								<div class="free">FREE</div>
+								<div class="pay">
+									<i></i>
+									20,000원
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="number">5</div>
+							<div class="name">
+								<div class="poto">
+									<img src="" alt="">
+								</div>
+								<a href="#">Solace - 위안</a>
+							</div>
+							<div class="producer">
+								<a href="">Ragamuffin</a>
+							</div>
+							<div class="moods">우울한</div>
+							<div class="genre">boombap</div>
+							<div class="option">
+								<div class="icon play"></div>
+								<div class="icon list"></div>
+								<div class="icon share"></div>
+								<div class="icon like"></div>
+								<div class="icon more"></div>
+							</div>
+							<div class="cart">
+								<div class="free">FREE</div>
+								<div class="pay">
+									<i></i>
+									20,000원
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="number">6</div>
+							<div class="name">
+								<div class="poto">
+									<img src="" alt="">
+								</div>
+								<a href="#">#2 SaMulNoRi</a>
+							</div>
+							<div class="producer">
+								<a href="">Ragamuffin</a>
+							</div>
+							<div class="moods">우울한</div>
+							<div class="genre">boombap</div>
+							<div class="option">
+								<div class="icon play"></div>
+								<div class="icon list"></div>
+								<div class="icon share"></div>
+								<div class="icon like"></div>
+								<div class="icon more"></div>
+							</div>
+							<div class="cart">
+								<div class="free">FREE</div>
+								<div class="pay">
+									<i></i>
+									20,000원
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="number">7</div>
+							<div class="name">
+								<div class="poto">
+									<img src="" alt="">
+								</div>
+								<a href="#">#1 A Cup Of Water</a>
+							</div>
+							<div class="producer">
+								<a href="">Ragamuffin</a>
+							</div>
+							<div class="moods">우울한</div>
+							<div class="genre">boombap</div>
+							<div class="option">
+								<div class="icon play"></div>
+								<div class="icon list"></div>
+								<div class="icon share"></div>
+								<div class="icon like"></div>
+								<div class="icon more"></div>
+							</div>
+							<div class="cart">
+								<div class="free">FREE</div>
+								<div class="pay">
+									<i></i>
+									20,000원
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="number">8</div>
+							<div class="name">
+								<div class="poto">
+									<img src="" alt="">
+								</div>
+								<a href="#">200511</a>
+							</div>
+							<div class="producer">
+								<a href="">Ragamuffin</a>
+							</div>
+							<div class="moods">우울한</div>
+							<div class="genre">boombap</div>
+							<div class="option">
+								<div class="icon play"></div>
+								<div class="icon list"></div>
+								<div class="icon share"></div>
+								<div class="icon like"></div>
+								<div class="icon more"></div>
+							</div>
+							<div class="cart">
+								<div class="free">FREE</div>
+								<div class="pay">
+									<i></i>
+									20,000원
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="number">9</div>
+							<div class="name">
+								<div class="poto">
+									<img src="" alt="">
+								</div>
+								<a href="#">pure</a>
+							</div>
+							<div class="producer">
+								<a href="">Ragamuffin</a>
+							</div>
+							<div class="moods">우울한</div>
+							<div class="genre">boombap</div>
+							<div class="option">
+								<div class="icon play"></div>
+								<div class="icon list"></div>
+								<div class="icon share"></div>
+								<div class="icon like"></div>
+								<div class="icon more"></div>
+							</div>
+							<div class="cart">
+								<div class="free">FREE</div>
+								<div class="pay">
+									<i></i>
+									20,000원
+								</div>
+							</div>
+						</li>
+						<li>
+							<div class="number">10</div>
+							<div class="name">
+								<div class="poto">
+									<img src="" alt="">
+								</div>
+								<a href="#">쿠기 타입 피아노 트랩 비트</a>
+							</div>
+							<div class="producer">
+								<a href="">Ragamuffin</a>
+							</div>
+							<div class="moods">우울한</div>
+							<div class="genre">boombap</div>
+							<div class="option">
+								<div class="icon play"></div>
+								<div class="icon list"></div>
+								<div class="icon share"></div>
+								<div class="icon like"></div>
+								<div class="icon more"></div>
+							</div>
+							<div class="cart">
+								<div class="free">FREE</div>
+								<div class="pay">
+									<i></i>
+									20,000원
+								</div>
+							</div>
+						</li>
+					</ul>
+					
+				</div>
+				
+			</div>
+
+			<div class="section producers">
+			    <div class="title">
+			        <div class="name">프로듀서 BEST 10</div>
+			        <div class="edit">전체보기></div>
+                </div>
+            
+                <div class="center">
+                
+                   <div class="swiper-container plist">
+                        <div class="swiper-wrapper">
+                           
+                            <div class="swiper-slide">
+                                <div class="img">
+                                    <img src="./img/best/img07.jpeg" alt="">
+                                </div>
+                                <div class="title">BUYER</div>
+                                <ul class="content">
+                                    <li>
+                                        <div class="name">LIKE</div>
+                                        <div class="value">
+                                        <i class="like"></i>
+                                        99
+                                        </div>
+                                    </li>
+                                    
+                                    <li>
+                                        <div class="name">FOLLOW</div>
+                                        <div class="value">40</div>
+                                    </li>
+                                    
+                                    <li>
+                                        <div class="name">BUY</div>
+                                        <div class="value">78</div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="img">
+                                    <img src="./img/best/img06.jpeg" alt="">
+                                </div>
+                                <div class="title">BUYER</div>
+                                <ul class="content">
+                                    <li>
+                                        <div class="name">LIKE</div>
+                                        <div class="value">
+                                        <i class="like"></i>
+                                        99
+                                        </div>
+                                    </li>
+                                    
+                                    <li>
+                                        <div class="name">FOLLOW</div>
+                                        <div class="value">40</div>
+                                    </li>
+                                    
+                                    <li>
+                                        <div class="name">BUY</div>
+                                        <div class="value">78</div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="img">
+                                    <img src="./img/best/img05.png" alt="">
+                                </div>
+                                <div class="title">BUYER</div>
+                                <ul class="content">
+                                    <li>
+                                        <div class="name">LIKE</div>
+                                        <div class="value">
+                                        <i class="like"></i>
+                                        99
+                                        </div>
+                                    </li>
+                                    
+                                    <li>
+                                        <div class="name">FOLLOW</div>
+                                        <div class="value">40</div>
+                                    </li>
+                                    
+                                    <li>
+                                        <div class="name">BUY</div>
+                                        <div class="value">78</div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="img">
+                                    <img src="./img/best/img04.jpeg" alt="">
+                                </div>
+                                <div class="title">BUYER</div>
+                                <ul class="content">
+                                    <li>
+                                        <div class="name">LIKE</div>
+                                        <div class="value">
+                                        <i class="like"></i>
+                                        99
+                                        </div>
+                                    </li>
+                                    
+                                    <li>
+                                        <div class="name">FOLLOW</div>
+                                        <div class="value">40</div>
+                                    </li>
+                                    
+                                    <li>
+                                        <div class="name">BUY</div>
+                                        <div class="value">78</div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="img">
+                                    <img src="./img/best/img03.png" alt="">
+                                </div>
+                                <div class="title">BUYER</div>
+                                <ul class="content">
+                                    <li>
+                                        <div class="name">LIKE</div>
+                                        <div class="value">
+                                        <i class="like"></i>
+                                        99
+                                        </div>
+                                    </li>
+                                    
+                                    <li>
+                                        <div class="name">FOLLOW</div>
+                                        <div class="value">40</div>
+                                    </li>
+                                    
+                                    <li>
+                                        <div class="name">BUY</div>
+                                        <div class="value">78</div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="img">
+                                    <img src="./img/best/img02.jpeg" alt="">
+                                </div>
+                                <div class="title">BUYER</div>
+                                <ul class="content">
+                                    <li>
+                                        <div class="name">LIKE</div>
+                                        <div class="value">
+                                        <i class="like"></i>
+                                        99
+                                        </div>
+                                    </li>
+                                    
+                                    <li>
+                                        <div class="name">FOLLOW</div>
+                                        <div class="value">40</div>
+                                    </li>
+                                    
+                                    <li>
+                                        <div class="name">BUY</div>
+                                        <div class="value">78</div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="img">
+                                    <img src="./img/best/img05.png" alt="">
+                                </div>
+                                <div class="title">BUYER</div>
+                                <ul class="content">
+                                    <li>
+                                        <div class="name">LIKE</div>
+                                        <div class="value">
+                                        <i class="like"></i>
+                                        99
+                                        </div>
+                                    </li>
+                                    
+                                    <li>
+                                        <div class="name">FOLLOW</div>
+                                        <div class="value">40</div>
+                                    </li>
+                                    
+                                    <li>
+                                        <div class="name">BUY</div>
+                                        <div class="value">78</div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="img">
+                                    <img src="./img/best/img01.png" alt="">
+                                </div>
+                                <div class="title">BUYER</div>
+                                <ul class="content">
+                                    <li>
+                                        <div class="name">LIKE</div>
+                                        <div class="value">
+                                        <i class="like"></i>
+                                        99
+                                        </div>
+                                    </li>
+                                    
+                                    <li>
+                                        <div class="name">FOLLOW</div>
+                                        <div class="value">40</div>
+                                    </li>
+                                    
+                                    <li>
+                                        <div class="name">BUY</div>
+                                        <div class="value">78</div>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                        </div>
+                    </div>
+                  
+                </div>  
+                  
+            </div>  
+            
+            <div class="section footer">
+               
+                <div class="name">
+                    제이원비츠<br>j1beatz
+                </div>
+                
+                <div class="address">
+                    <span>대표 김형민, 박지석</span> 
+                    <span>사업자등록번호 803-02-01042</span> 
+                    <span>주소 서울특별시 종로구 새문안로 3길 3, 5층(내일신문) 종로청년창업센터</span> 
+                    <span>Mail contact@j1beatz.com</span> 
+                    <span>고객센터 02-6217-7182</span> 
+                    <span>운영시간 : 10:30 ~ 18:30</span><br>
+                    <span>개인정보보호책임자 : 박지석</span> 
+                    <span>통신판매업신고 : 2020-서울종로-0374</span> 
+                    <span2>이용약관</span2> 
+                    <span2>개인정보처리방침</span2>
+                </div>
+                
+                <p>Copyrightⓒ J1BEATZ All right reserved</p>
+		    </div>
+       
+            <div class="playbox">
+                <div></div>
+                
+                <div>
+                    <ul class="control">
+                        <li><div class="repeat">반복</div></li>
+                        <li><div class="previous">이전</div></li>
+                        <li><div class="play">재생</div></li>
+                        <li><div class="next">다음</div></li>
+                        <li><div class="shuffle">랜덤</div></li>
+                    </ul>
+                    <div class="timebar">
+                        <span class="time start">00:00</span>
+                        <div class="bar"></div>
+                        <span class="time end">00:00</span>
+                    </div>
+                </div>
+                
+                <div class="button">
+                    <div class="like"></div>
+                    <div class="sound"></div>
+                    <div class="list"></div>
+                    <a class="box" href="#">구매하기</a>
+                </div>
+<!--
+                <div class="button">
+                    <ul class="button">
+                        <li><div class="like">rr</div></li>
+                        <li><div class="sound">r</div></li>
+                        <li><div class="list">r</div></li>
+                        <li><a class="box" href="#">구매하기</a></li>
+                    </ul>
+                </div>
+-->
+                
+
+            </div>
+
+        </main>
+	</body>
+	<script>	
+	
+		
+    var swiper = new Swiper('.slider', {
+      slidesPerView: 3,
+      spaceBetween: 30,
+		loop:true,
+      centeredSlides: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+    });
+		
+//	swiper.slideTo(index, speed, runCallbacks);
+	swiper.slideTo(1, 0);
+		
+		
+		
+    var mood = new Swiper('.moodlist', {
+      slidesPerView: 8,
+      spaceBetween: 20,
+	  loop:true,
+    });
+        
+    var plist = new Swiper('.plist', {
+      slidesPerView: 7,
+      spaceBetween: 0,
+	  loop:true,
+    });
+		
+
+		
+		
+	$(function(){
+		
+		$("#menu .menuBox > li").slideUp(0);
+		
+		$("#menu .menu > li").on("mouseenter",function(){
+			const index = $(this).index();
+			$("#menu .menuBox > li").stop().slideUp(0);
+			$("#menu .menuBox > li").eq(index).stop().slideDown(500);
+		});
+		
+		$("#menu").on("mouseleave",function(){
+			$("#menu .menuBox > li").stop().slideUp(500);
+		});
+		
+		$(".menulist > li .list").on("click",function(){
+			
+			if($(this).next().hasClass("view")){
+				$(".menulist > li > ul").removeClass("view");
+			}else{
+				$(".menulist > li > ul").removeClass("view");
+				$(this).next().addClass("view");
+			}
+		});
+
+		
+		$(".head > .button").on("click",function(){
+			$("header").toggleClass("view");
+		});
+		
+		
+	})
+	
+	</script>
+</html>
+
+
+
+
+
+
+
+

@@ -1,0 +1,21 @@
+[ 포트폴리오 구상 ]
+
+풀페이지
+프레임페이지
+하이브리드페이지
+
+1. 홈페이지 이름 (logo)
+1. 메인슬라이더(있으면좋다)
+2. 자기소개
+3. 자기스킬 html5  70~90 javascript 70~90 css 70~90
+4. 내가만든 포트폴리오
+5. 꾸미는 요소들
+
+
+http://pkduuck.com
+http://rebehayan3.cafe24.com/lecture/port/a/index.html#a
+
+http://blog.naver.com/PostView.nhn?blogId=degal903&logNo=221358939762&parentCategoryNo=&categoryNo=49&viewDate=&isShowPopularPosts=true&from=search
+
+
+모니터사진 - 959 560
