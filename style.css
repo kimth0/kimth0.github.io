@@ -207,7 +207,8 @@ p{
 }
 
 .major__title{
-    color: darkgray;
+    color: gray;
+    font-size: var(--font-medium)
 }
 
 .job{
@@ -399,6 +400,29 @@ p{
 .contact__links i:hover{
     transform: scale(1.1);
     color: gold;
+}
+
+/* Scroll */
+.arrow-up{
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    width: 70px;
+    height: 70px;
+    font-size: 40px;
+    color: white;
+    background-color: #0f4c81;
+    border: 1px solid #0f4c81;
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 300ms ease-in;
+}
+
+.arrow-up.visible{
+    opacity: 1;
+    pointer-events: auto;
+    
 }
 
 /* For below 768px screen width */
