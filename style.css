@@ -116,14 +116,15 @@ p{
     margin: 0px 4px;
     cursor: pointer;
     border-radius: var(--size-border-radius);
+    border: 1px solid transparent;
+    border-radius: var(--size-border-radius);
 }
 
-.navbar__menu__item.active{
-    border: 1px solid white;
-}
+
 
 .navbar__menu__item:hover{
     background-color : #ccca;
+    border-color: gray;
 }
 
 .navbar__toggle-btn{
@@ -289,13 +290,13 @@ p{
     padding: 8px 48px;
 }
 
-.list__btn.active,
+.list__btn.selected,
 .list__btn:hover{
     background-color: black;
     color: white;
 }
 
-.list__btn.active .list__count,
+.list__btn.selected .list__count,
 .list__btn:hover .list__count{
     opacity: 1;
     top: 0;
