@@ -167,6 +167,11 @@ p{
     border-radius: var(--size-border-radius);
 }
 
+.home__button:hover{
+    background-color: orange;
+}
+
+
 /* Section common */
 .section{
     padding: 50px;
@@ -288,6 +293,7 @@ p{
     border-radius: var(--size-border-radius);
     font-size: var(--font-regular);
     padding: 8px 48px;
+    position: relative;
 }
 
 .list__btn.selected,
@@ -299,7 +305,7 @@ p{
 .list__btn.selected .list__count,
 .list__btn:hover .list__count{
     opacity: 1;
-    top: 0;
+    top: 5px;
 }
 
 .list__count{
@@ -310,9 +316,9 @@ p{
     height: 24px;
     display: inline-block;
     line-height: 24px;
-    position: relative;
+    position: absolute;
     top: -20px;
-    left: 4px;
+    right: 16px;
     opacity: 0;
     transition: all var(--animation-duration) ease-in;
 }
@@ -439,8 +445,21 @@ p{
 
 /* For below 768px screen width */
 @media screen and (max-width : 768px){
+    :root{
+    /* Font size */
+    --font-large : 30px;
+    --font-medium : 18px;
+    --font-regular : 16px
+    --font-small : 14px;
+    --font-micro : 12px;
+
+    }
+
     .navbar__toggle-btn{
         display: block;
+        top: 16px;
+        right: 16px;
+        font-size: var(--font-medium);
     }
 
     #navbar{
@@ -463,15 +482,36 @@ p{
         display: block;
     }
 
+    .section{
+        padding: 16px;
+        padding-top: 40px;
+    }
+
     .about__majors{
         flex-direction: column;
+        margin-top: 30px;
+        margin-bottom: 0px;
     }
 
     .major{
-        margin-bottom: 38px;
+        margin-bottom: 30px;
+    }
+
+    .list__btn{
+        margin: 4px 0;
+        width: 100%;
     }
 
     .project{
         flex-grow: 1;
+    }
+
+    .arrow-up{
+        width: 50px;
+        height: 50px;
+        font-size: 30px;
+        line-height: 50px;
+        right: 16px;
+        bottom: 16px ;
     }
 }
